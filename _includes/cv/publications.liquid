@@ -10,7 +10,7 @@
           {% if entry.releaseDate %}{{ entry.releaseDate }}{% elsif entry.date %}{{ entry.date }}{% endif %}
         {% endcapture %}
 
-        {% if pub_date != '' %}
+        {% if pub_date != blank %}
           <div class="col-xs-2 col-sm-2 col-md-2 text-center">
             <table class="table-cv">
               <tbody>

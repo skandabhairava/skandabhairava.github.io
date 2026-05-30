@@ -12,6 +12,28 @@
     color: var(--global-theme-color);
     font-size: 5rem;
   }
+  
+  h2 {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 345px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1rem;
+    }
+  }
 }
 
 .tag-category-list {

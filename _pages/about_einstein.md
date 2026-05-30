@@ -1,5 +1,5 @@
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+A Computer Science student, attempting to understand, and trying to make an impact in the world. 
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+My interests include all things related to Orchastrating multiple components, be it Designing Distributed Systems, or Optimizing a program to run on multiple (GPU) cores. I also enjoy writing simulations to understand how things work intuitively.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Currently a 4th year student at Manipal Institute of Technology Bengaluru, pursuing my undergraduate degree in Information Technology. You can take a look at my previous projects [here](/projects), my publications [here](/publications), or even my blog [here](/blog).
