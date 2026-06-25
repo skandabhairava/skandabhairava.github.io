@@ -55,11 +55,46 @@ ninja.data = [{
             window.location.href = "/blog/2025/raytracing/";
           
         },
-      },{id: "projects-raytracer",
+      },{id: "projects-custom-uri-scheme-golang",
+          title: 'Custom URI Scheme (Golang)',
+          description: "Golang Library to build executables which can startup by visiting a custom URL",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/custom_uri_scheme/";
+            },},{id: "projects-gravball",
+          title: 'GravBall',
+          description: "Fun Game based on Gravity Simulation",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/gravball/";
+            },},{id: "projects-leaf-disease-detection",
+          title: 'Leaf Disease Detection',
+          description: "Wrote my own CNN in Pytorch",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/leaf_disease_detection/";
+            },},{id: "projects-mcworldgen",
+          title: 'MCWorldGen',
+          description: "Custom World Generation engine built from scratch using perlin noise. Uses minecraft as the main world building interface.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/mcworldgen/";
+            },},{id: "projects-obbattu",
+          title: 'Obbattu',
+          description: "Kannada based wordle like game",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/obbattu/";
+            },},{id: "projects-p5js-simulations",
+          title: 'P5JS Simulations',
+          description: "Simple simulations using P5JS as the rendering engine.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/p5js/";
+            },},{id: "projects-raytracer",
           title: 'Raytracer',
           description: "A Custom raytracing engine in C++ developed from scratch, with little to no references.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/raytracer/";
+            },},{id: "projects-rejex-python",
+          title: 'Rejex (Python)',
+          description: "Python Library to build Regex expressions",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/rejex/";
             },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
