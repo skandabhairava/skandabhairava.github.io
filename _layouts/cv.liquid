@@ -149,7 +149,11 @@ layout: default
 
           <a class="anchor" id="{{ section_title | slugify }}"></a>
           <div class="card mt-3 p-3">
-            <h3 class="card-title font-weight-medium">{{ section_title }}</h3>
+            {% if section_title == 'Projects' %}
+              <h3 class="card-title font-weight-medium"><a href="{{ '/projects' | relative_url }}">{{ section_title }}</a></h3>
+            {% else %}
+              <h3 class="card-title font-weight-medium">{{ section_title }}</h3>
+            {% endif %}
             <div>
               {% if section_title == 'Education' %}
                 {% assign entries = section_entries %}
@@ -364,7 +368,7 @@ layout: default
         {% if site.data.resume.projects.size > 0 %}
           <a class="anchor" id="projects"></a>
           <div class="card mt-3 p-3">
-            <h3 class="card-title font-weight-medium">Projects</h3>
+            <h3 class="card-title font-weight-medium"><a href="{{ '/projects' | relative_url }}">Projects</a></h3>
             <div>
               {% assign entries = site.data.resume.projects %}
               {% include cv/projects.liquid %}
