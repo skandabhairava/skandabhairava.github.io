@@ -44,7 +44,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-path-to-raytracing-pun-intended-101",
+        },{id: "post-federated-learning",
+        
+          title: "Federated Learning",
+        
+        description: "Introduction to Federated Learning",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/federated-learning/";
+          
+        },
+      },{id: "post-path-to-raytracing-pun-intended-101",
         
           title: "Path to Raytracing(Pun intended) 101",
         
