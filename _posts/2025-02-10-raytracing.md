@@ -1293,7 +1293,7 @@ P3
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexample1.webp" class="img-fluid rounded z-depth-1" width="20%" %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexa1.webp" class="img-fluid rounded z-depth-1" width="20%" %}
     </div>
 </div>
 
@@ -1317,7 +1317,7 @@ For example, the previous .ppm when converted to a .png file looks like this usi
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexample2.webp" class="img-fluid rounded z-depth-1" width="20%" %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexa2.webp" class="img-fluid rounded z-depth-1" width="20%" %}
     </div>
 </div>
 

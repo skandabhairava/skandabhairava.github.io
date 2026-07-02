@@ -11,6 +11,14 @@ related_publications: false
 ### Introduction
 This is a simple game which mimics basketball, but uses gravitational mechanism to attract the ball. Your goal is to bring the ball to your court. Use WASD or arrow keys to move your character.
 
+### Download:
+Download the ZIP for your Operating System, extract the executable/game and run it!
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0 text-center">
+        <a class="btn btn-sm btn-outline-primary" href="https://github.com/skandabhairava/GravBall/releases/latest" target="_blank">Download Zip</a>
+    </div>
+</div>
+
 ### Features
 - Color Customization
 - Various Interesting Powerups
@@ -61,8 +69,6 @@ source .venv/bin/activate #on linux
 ```
 uv run src/main.py
 ```
-
-4. Optionally edit the `player_config.json` to edit game configurations.
 
 ### Where to find:
 Code: [Github](https://github.com/skandabhairava/GravBall)
