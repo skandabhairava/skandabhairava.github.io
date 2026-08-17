@@ -3,9 +3,13 @@ layout: post
 title: Federated Learning
 date: 2026-07-1
 description: Introduction to Federated Learning
-tags: AI FederatedLearning Systems
+tags: ai federated-learning systems
 categories: explanation
 thumbnail: assets/img/publication_preview/adares.png
+
+nomnoml:
+    enabled: true
+    # zoomable: true
 ---
 
 In 2017, Researchers at Google published a paper<sup>[[1]](#1)</sup> titled "Communication-Efficient Learning of Deep Networks from Decentralized Data", which introduced and popularised the idea of a Privacy Oriented, Distributed AI Training System in mainstream Computer Science research. This project later turned into what we today call Federated Learning.
@@ -24,6 +28,31 @@ We learnt that Federated Learning Systems are distributed, and preserve privacy.
 In a Centralized solution, we send data from consumer machines(we will refer to these as "Clients" from now onwards) to the center Server, which aggregates the data and trains the AI. This architecture sacrifice network bandwidth, and saves on client's sompute power.
 
 However, in a Federated Learning architecture, instead of the data being transferred, the AI model parameters are sent to the Clients instead. Here, the clients host the AI models, which are then updated to the latest model parameters recieved from the Server. The Clients then train this model parameters recieved from the Server, based on the data it has collected. This new trained model's parameters are then uploaded back to the Server. 
+
+```nomnoml
+[Main Server]<-[<a id=a>Server]
+[Main Server]<-[<a id=b>Client]
+[Main Server]<-[<a id=c>Client]
+[<a id=g> Server]<-[<a id=e>Client]
+[<a id=g> Server]<-[<a id=f>Client]
+[Main Server]<-[<a id=g> Server]
+[<a id=zz> Server]<-[<a id=i>Client]
+[<a id=zz> Server]<-[<a id=j>Client]
+[<a id=a>]<-[<a id=zz> Server]
+[<a id=a> Server]<-[<a id=h>Client]
+```
+
+<!-- <div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0 text-center">
+        <canvas id="target-canvas"></canvas>
+<script>
+  var canvas = document.getElementById('target-canvas')
+  var source = `
+`
+  nomnoml.draw(canvas, source)
+</script>
+    </div>
+</div> -->
 
 In a Federated Learning(FL) architecture, we aren't sharing the personal data, but instead we're sharing the trained model's details/parameters over the network. The Server aggregates all the model parameters it recieves from all the clients into a few(or one) models.
 
@@ -119,7 +148,7 @@ This is the main problem with FL architecture, Non-IID/Heterogeneous Datasets ru
 
 Of course, there are other issues with FL, but this is the main issue FL faces.
 
-Some of the other issues FL faces is, Client Unavailability(When some clients don't participate, maybe due to low resources, Check out ADaRES either [here](https://doi.org/10.1109/COMSNETS67989.2026.11418093) or <a href="/assets/pdf/ADaRES/ADaRES_FL.pdf" target="_blank">here</a>), Privacy leakage<sup>[[6]](#6)</sup>, Distributed Attacks<sup>[[7]](#7)</sup>, etc.
+Some of the other issues FL faces is, Client Unavailability (When some clients don't participate, maybe due to low resources, Check out ADaRES either [here](https://doi.org/10.1109/COMSNETS67989.2026.11418093) or <a href="/assets/pdf/ADaRES/ADaRES_FL.pdf" target="_blank">here</a>), Privacy leakage<sup>[[6]](#6)</sup>, Distributed Attacks<sup>[[7]](#7)</sup>, etc.
 
 #### So is FL the system, or the process?
 
@@ -149,7 +178,7 @@ To fix this, other researchers have come up with various algorithms/protocols to
 Federated Learning has a lot of pros and cons. Learning how the tradeoffs work will help you learn when to use FL architecture.
 
 Use FL When:
-- The model is to be used on Edge Devices, which also collect the training data.
+- The model is to be used on Edge Devices, which also collects the training data.
 - Data cannot be transferred either due to security policies or excess bandwidth usage.
 - Most of the data is IID/Homogenous, this helps the model converge better.
 - We can safely Orchestrate FL using the right algorithm, to block certain distributed attacks.
@@ -163,6 +192,9 @@ Do not use FL When:
 You can read more about Federated Learning on scholarly articles like this<sup>[[10]](#10)</sup>.
 
 #### TL;DR Code example
+
+<details markdown="1">
+<summary>Show code</summary>
 Here's a simple implementation of FedAvg using Pytorch(Python).
 
 
@@ -290,6 +322,8 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+</details>
 
 ---
 

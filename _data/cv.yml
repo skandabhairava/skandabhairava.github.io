@@ -138,6 +138,13 @@ cv:
           - Machine Learning
         # start_date: 2018-01-01
         # end_date: 2018-01-01
+      - name: DragonCommissions
+        summary: Co-founded a plugin development hub that built 100+ custom plugins for gaming creators. Coordinated a team of around 20 developers, and handled client requirements for around 10+ creators. I also built internal automation tools and pipelines that made development workflows efficient.
+        highlights:
+          - Python
+          - Automation
+          - AWS
+          - Management
       - name: Raytracer
         summary: Implemented a 3D Ray Tracing Engine from scratch in C++ using hand-derived math, multithreading and a custom Pixel Representation Format.
         highlights:

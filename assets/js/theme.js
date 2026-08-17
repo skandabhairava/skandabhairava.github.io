@@ -37,6 +37,10 @@ let applyTheme = () => {
     setMermaidTheme(theme);
   }
 
+  if (typeof nomnoml !== "undefined") {
+    setNomnomlTheme(theme);
+  }
+
   // if diff2html is not defined, do nothing
   if (typeof Diff2HtmlUI !== "undefined") {
     setDiff2htmlTheme(theme);
@@ -128,6 +132,20 @@ let addMermaidZoom = (records, observer) => {
   observer.disconnect();
 };
 
+let addNomnomlZoom = (records, observer) => {
+  var svgs = d3.selectAll(".nomnoml svg");
+  svgs.each(function () {
+    var svg = d3.select(this);
+    svg.html("<g>" + svg.html() + "</g>");
+    var inner = svg.select("g");
+    var zoom = d3.zoom().on("zoom", function (event) {
+      inner.attr("transform", event.transform);
+    });
+    svg.call(zoom);
+  });
+  observer.disconnect();
+};
+
 let setMermaidTheme = (theme) => {
   if (theme == "light") {
     // light theme name in mermaid is 'default'
@@ -149,6 +167,32 @@ let setMermaidTheme = (theme) => {
   const observable = document.querySelector(".mermaid svg");
   if (observable !== null) {
     var observer = new MutationObserver(addMermaidZoom);
+    const observerOptions = { childList: true };
+    observer.observe(observable, observerOptions);
+  }
+};
+
+let setNomnomlTheme = (theme) => {
+  /* Re-render the SVG, based on https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_includes/mermaid.html */
+  document.querySelectorAll(".nomnoml").forEach((elem) => {
+    // Get the code block content from previous element, since it is the mermaid code itself as defined in Markdown, but it is hidden
+    const nomnomlCode = elem.previousSibling.childNodes[0].innerText;
+    let strokeColor = "#fill: #eee8d5; #fdf6e3\n#stroke: #33322E\n"
+    if (theme === "dark") {
+      strokeColor = "#fill: #555555; #555555\n#stroke: #eeeeee\n"
+    }
+    const svgCode = nomnoml.renderSvg(strokeColor+nomnomlCode);
+    elem.innerHTML = svgCode;
+
+    let svgElem = elem.querySelector('svg');
+    if (svgElem) {
+      svgElem.setAttribute('width', '100%');
+    }
+  });
+
+  const observable = document.querySelector(".nomnoml svg");
+  if (observable !== null) {
+    var observer = new MutationObserver(addNomnomlZoom);
     const observerOptions = { childList: true };
     observer.observe(observable, observerOptions);
   }

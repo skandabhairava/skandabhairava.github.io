@@ -43,6 +43,15 @@
   --global-danger-block-text: #600;
   --global-danger-block-title: #c00;
 
+  --highlight-blue-bg: rgba(59, 130, 246, 0.20);
+  --highlight-blue-stripe: rgba(59, 130, 246, 0.10);
+
+  --highlight-green-bg: rgba(34, 197, 94, 0.20);
+  --highlight-green-stripe: rgba(34, 197, 94, 0.10);
+
+  --highlight-pink-bg: rgba(236, 72, 153, 0.20);
+  --highlight-pink-stripe: rgba(236, 72, 153, 0.10);
+
   #light-toggle-system {
     display: inline-block;
   }
@@ -111,6 +120,15 @@ html[data-theme="dark"] {
   --global-danger-block-bg: #600;
   --global-danger-block-text: #ffb9b9;
   --global-danger-block-title: #ffe0e0;
+
+  --highlight-blue-bg: rgba(59, 130, 246, 0.24);
+  --highlight-blue-stripe: rgba(96, 165, 250, 0.12);
+
+  --highlight-green-bg: rgba(34, 197, 94, 0.22);
+  --highlight-green-stripe: rgba(74, 222, 128, 0.11);
+
+  --highlight-pink-bg: rgba(236, 72, 153, 0.23);
+  --highlight-pink-stripe: rgba(244, 114, 182, 0.12);
 
   .only-light {
     display: none;

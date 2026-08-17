@@ -49,6 +49,30 @@
   <script defer src="{{ '/assets/js/mermaid-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
 
+{% if page.nomnoml and page.nomnoml.enabled %}
+  <script
+    defer
+    src="{{ site.third_party_libraries.graphre.url.js }}"
+    integrity="{{ site.third_party_libraries.graphre.integrity.js }}"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    defer
+    src="{{ site.third_party_libraries.nomnoml.url.js }}"
+    integrity="{{ site.third_party_libraries.nomnoml.integrity.js }}"
+    crossorigin="anonymous"
+  ></script>
+  {% if page.nomnoml.zoomable %}
+    <script
+      defer
+      src="{{ site.third_party_libraries.d3.url.js }}"
+      integrity="{{ site.third_party_libraries.d3.integrity.js }}"
+      crossorigin="anonymous"
+    ></script>
+  {% endif %}
+  <script defer src="{{ '/assets/js/nomnoml-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
+{% endif %}
+
 {% if page.code_diff %}
   <!-- Diff2HTML -->
   <!-- diff2html doesn't go well with Bootstrap Table -->

@@ -199,7 +199,6 @@ exclude:
   - lighthouse_results/
   - package.json
   - package-lock.json
-  - _pages/about_einstein.md
   - purgecss.config.js
   - README.md
   - readme_preview/
@@ -549,6 +548,18 @@ third_party_libraries:
     url:
       js: "https://cdn.jsdelivr.net/npm/medium-zoom@{{version}}/dist/medium-zoom.min.js"
     version: "1.1.0"
+  nomnoml:
+    integrity:
+      js: "sha256-YBxYj+amzjcw1Yt9JhxmlEJNHT09OGpsr69tHBA391k="
+    url:
+      js: "https://unpkg.com/nomnoml/dist/nomnoml.js"
+    version: "1.7.0"
+  graphre:
+    integrity:
+      js: "sha256-2IER5APBIQ75Bchr6YdhwV0/8ZBjZHDYOO3BeX+NXHo="
+    url:
+      js: "https://unpkg.com/graphre/dist/graphre.js"
+    version: "0.1.3"
   mermaid:
     integrity:
       js: "sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A="

@@ -17,7 +17,7 @@
     <p class="mb-2">Here are some more articles you might like to read next:</p>
   {% endunless %}
 
-  <li class="my-2">
+  <li class="my-2 mx-2">
     {% if post.redirect == blank %}
       <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="{{ post.url | relative_url }}">{{ post.title }}</a>
     {% elsif post.redirect contains '://' %}
