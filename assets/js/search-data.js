@@ -55,15 +55,26 @@ ninja.data = [{
             window.location.href = "/blog/2026/federated-learning/";
           
         },
-      },{id: "post-path-to-raytracing-pun-intended-101",
+      },{id: "post-path-to-raytracing-part-2",
         
-          title: "Path to Raytracing(Pun intended) 101",
+          title: "Path to Raytracing | Part 2",
         
         description: "from “Hello World!” to “Hello 3D World!”",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/raytracing/";
+            window.location.href = "/blog/2025/raytracing_p2/";
+          
+        },
+      },{id: "post-path-to-raytracing-pun-intended-part-1",
+        
+          title: "Path to Raytracing(Pun intended) | Part 1",
+        
+        description: "from “Hello World!” to “Hello 3D World!”",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/raytracing_p1/";
           
         },
       },{id: "projects-custom-uri-scheme-golang",
