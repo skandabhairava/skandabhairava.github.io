@@ -44,7 +44,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-federated-learning",
+        },{id: "post-parallelism-part-1",
+        
+          title: "Parallelism | Part 1",
+        
+        description: "Introduction to the concept of Parallelism (and Concurrency)",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/parallelism/";
+          
+        },
+      },{id: "post-federated-learning",
         
           title: "Federated Learning",
         
