@@ -27,7 +27,7 @@ P(VERSION)
 (DATA)
 ```
 
-We’ll be following version 3(Which says, There are 3 components in the data, i.e R, G, B). Our width and height is going to be stored inside the camera. The max value, as discussed earlier, is one unsigned byte, or 255 in terms of an integer. (An unsigned byte ranges [0, 255], whereas a signed byte ranges [-128, 127])
+We’ll be following version 3 (Which says, There are 3 components in the data, i.e R, G, B). Our width and height is going to be stored inside the camera. The max value, as discussed earlier, is one unsigned byte, or 255 in terms of an integer. (An unsigned byte ranges [0, 255], whereas a signed byte ranges [-128, 127])
 
 Let’s take an example .ppm file
 
@@ -74,7 +74,7 @@ I use vscode’s inbuilt png viewer to view small png files, as that doesn’t b
 
 To depict a 2D Grid of pixels- wait it can’t be 2D. We have 3 color channels per pixel. 2 Dimensions of size. So this entire grid is actually 3D. 2 Dimensions of size, and 1 Dimension of color.
 
-Now, to depict this, we can make use of a 3D Matrix. Many languages allow us to make use of Matrices. I however had a few things in mind(such as parallelism, and I didn’t know how race cases worked in Cpp, If you haven’t heard of these, it’s fine), and didn’t really know what to do. I went with a very complicated approach.
+Now, to depict this, we can make use of a 3D Matrix. Many languages allow us to make use of Matrices. I however had a few things in mind (such as parallelism, and I didn’t know how race cases worked in Cpp, If you haven’t heard of these, it’s fine), and didn’t really know what to do. I went with a very complicated approach.
 
 I flattened out the fixed 3 Dimensional grid, onto a 1 Dimensional array, and then sequentially wrote it down in an image form.
 
@@ -97,7 +97,7 @@ P3
 0 0 0 255 0 0 0 255 0 0 0 255 128 128 128 255 255 255
 ```
 
-The file format doesn’t care about new lines. It knows when to start a new row of pixels due to the WIDTH, and HEIGHT option defined before 255(MAX VALUE).
+The file format doesn’t care about new lines. It knows when to start a new row of pixels due to the WIDTH, and HEIGHT option defined before 255 (MAX VALUE).
 
 Which then gets converted to a .png using ffmpeg, to this:
 
@@ -110,7 +110,7 @@ Which then gets converted to a .png using ffmpeg, to this:
 The function which unwraps a 2D coordinate into a 1D array looks like this:
 
 <small><i>
-As the 3rd dimension is just color(for the most part, we can say we’ll be storing 3 colors, my project sometimes stores 4, 3, 1 colors for various different use cases), we can just skip 3 pieces of memory for every ‘pixel’.
+As the 3rd dimension is just color (for the most part, we can say we’ll be storing 3 colors, my project sometimes stores 4, 3, 1 colors for various different use cases), we can just skip 3 pieces of memory for every ‘pixel’.
 </i></small>
 
 ```cpp
@@ -121,7 +121,7 @@ inline unsigned char* get_pixel(int y, int x) const {
 ```
 
 `this->pixels` refers to the pointer to the 1st index of the 3D grid of pixels.
-`this->filetype` can be assumed to just be 3(R, G, B) for our devlog use case.
+`this->filetype` can be assumed to just be 3 (R, G, B) for our devlog use case.
 
 Therefore the function just looks like this:
 ```cpp
@@ -135,7 +135,7 @@ The pointer after this function will point to the 1st byte/color of the pixel. W
 
 Here’s an example,
 - Let `this->width` be 2.
-- Let `this->pixels` be the memory address of the first pixel(the top left one)
+- Let `this->pixels` be the memory address of the first pixel (the top left one)
 
 - get_pixel(y, x)
 - get_pixel(0, 0) = (first id) +   0 * 2 * 3 + 0 * 3    = (first id, 1st byte i.e <span style="color: white; background-color: #000000;">0</span>)
@@ -156,7 +156,7 @@ Here’s an example,
 | <span style="color: white; background-color: #000000;">(0, 0, 0)</span> | <span style="color: white; background-color: #ff0000;">(255, 0, 0)</span> | <span style="color: white; background-color: #00ff00;">(0, 255, 0)</span> | <span style="color: white; background-color: #0000ff;">(0, 0, 255)</span> | <span style="color: black; background-color: #808080;">(128, 128, 128)</span> | <span style="color: black; background-color: #ffffff;">(255, 255, 255)</span> |
 
 <br>
-`get_pixel(y, x)` returns the memory address of the 1st color of the pixel coordinate entered. It doesn’t return the color. So, we can either write into this memory address to store a new color. Or read from the memory address to read a particular color(where we have to index 3 bytes at a time, to match with R,G,B values)
+`get_pixel(y, x)` returns the memory address of the 1st color of the pixel coordinate entered. It doesn’t return the color. So, we can either write into this memory address to store a new color. Or read from the memory address to read a particular color (where we have to index 3 bytes at a time, to match with R,G,B values)
 
 We can see this function works really well to “flatten” out a 3D grid to a 1D line.
 
@@ -177,7 +177,7 @@ We are following a shading model called “The Phong model”, in which there ar
 
 The Ambient lighting is just a constant number which just gives a small ‘glow’ overall equally. It’s literally ambient lighting from the surroundings.
 
-Let’s create a variable called `TotalBrightness` in the intersection function, which is a percentage of brightness of each pixel(between 0.0 and 1.0), and let it originally be set to 0. Before returning back the color of the intersected pixel, we’ll multiply the pixel’s color with this `TotalBrightness` variable to get the final pixel color and brightness.
+Let’s create a variable called `TotalBrightness` in the intersection function, which is a percentage of brightness of each pixel (between 0.0 and 1.0), and let it originally be set to 0. Before returning back the color of the intersected pixel, we’ll multiply the pixel’s color with this `TotalBrightness` variable to get the final pixel color and brightness.
 
 After everytime we modify the `TotalBrightness` value, we must make sure we clip it between 0.0 and 1.0, we don’t want colors which are > 255, nor do we want negative numbers.
 
@@ -191,7 +191,7 @@ The Ambient lighting is usually very low (in between 0.0 and 0.1, inclusive of b
 
 The Diffuse lighting is what gives the object a 3D look, and the Specular gives an Illusion of reflections.
 
-I didn’t build reflections as it is a bit more resource intensive in my implementation(as stated previously, my implementation definitely has some in-efficient math/algorithms involved, as I derived most of them myself).
+I didn’t build reflections as it is a bit more resource intensive in my implementation (as stated previously, my implementation definitely has some in-efficient math/algorithms involved, as I derived most of them myself).
 
 Before we break down diffuse shading, let’s actually try and get the vector component for the main intersection point on the sphere.
 
@@ -211,7 +211,7 @@ Although, keep in mind, when doing this using actual math, there are 2 intersect
     </div>
 </div>
 
-Using Pythagoras’s theorem, we can find the length of the purple line’s edge(As AP and PB are symmetrical, we’ll just find for the AP side), for the triangle APC, with P being $90^\circ$.
+Using Pythagoras’s theorem, we can find the length of the purple line’s edge (As AP and PB are symmetrical, we’ll just find for the AP side), for the triangle APC, with P being $90^\circ$.
 
 $$
 \begin{aligned}
@@ -223,7 +223,7 @@ $$
 
 We know, $AC$ is just the radius of the sphere, $PC$ is the distance to the point on the line, we found in the previous tutorial.
 
-Using these, we can find the distance of $AP$. This however doesn’t give us anything in particular. What we can do is, get the direction vector of the camera vector(which is normalized, i.e has a magnitude of 1), and then multiply it with $AP$, to get a vector in the direction of $AP$(as shown in the figure), and as large as $AP$.
+Using these, we can find the distance of $AP$. This however doesn’t give us anything in particular. What we can do is, get the direction vector of the camera vector (which is normalized, i.e has a magnitude of 1), and then multiply it with $AP$, to get a vector in the direction of $AP$(as shown in the figure), and as large as $AP$.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
@@ -244,7 +244,7 @@ Using these, we can find the distance of $AP$. This however doesn’t give us an
 
 We know vectors don’t have a starting position, but in this relative scenario, we’ll be taking the camera point as the starting point. 
 
-To find $\text{Camera} \to A$ vector, all we have to do is, find the $\text{Camera} \to P$ on the coordinate board(which we already have previously in the intersection chapter), we can then subtract $AP$ from the said vector.
+To find $\text{Camera} \to A$ vector, all we have to do is, find the $\text{Camera} \to P$ on the coordinate board (which we already have previously in the intersection chapter), we can then subtract $AP$ from the said vector.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -252,7 +252,7 @@ To find $\text{Camera} \to A$ vector, all we have to do is, find the $\text{Came
     </div>
 </div>
 
-Pay attention to the color of the vectors(to differentiate between them) and their direction.
+Pay attention to the color of the vectors (to differentiate between them) and their direction.
 
 Therefore:
 Let $(text{Camera} \to P)$ vector be $C’P$
@@ -289,7 +289,7 @@ We want this field to be a percentage value, so we can multiply the brightness o
 
 This Point Lighting also derives from “Object3D”, and hence holds values such as Position, and Normal. The normal vector for a point source light doesn’t make much sense like the normal vector for spheres, so we will just ignore it!
 
-Let’s also draw a vector from the intersection point to a light source(Try it out on paper using vector-math! Let’s take a closer look at the sphere, with only its normal vector, and the vector from its intersection point to a point source light.
+Let’s also draw a vector from the intersection point to a light source (Try it out on paper using vector-math!) Let’s take a closer look at the sphere, with only its normal vector, and the vector from its intersection point to a point source light.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -308,9 +308,9 @@ We’ll still need ambient though, that should always be counted no matter what.
 If there is an object, we can check the distance to the object, and then compare it to the distance to the point sourced light the camera/ray is pointed at, and then if the distance from the intersection point to the light source is lesser than the distance to the object, we can go ahead with the calculations.
 This simple logic gives us shadows, almost for free, with no additional calculations.
 
-To calculate brightness(take a look at the previous diagram once more).
+To calculate brightness (take a look at the previous diagram once more).
 
-We can guess the point which the Blue Normal line(The middle normal line from the center of the sphere) touches should be lit the most bright as it is directly below the light source/That part of the sphere is directly facing the light source.
+We can guess the point which the Blue Normal line (The middle normal line from the center of the sphere) touches should be lit the most bright as it is directly below the light source/That part of the sphere is directly facing the light source.
 
 We can see the angle between the normal and the vector point to light is somehow related to the brightness amount. With an angle of 0°, we see the brightest amount, and we can extrapolate, and imagine if the surface of the sphere is 90°+, the brightness should go to just 0.
 
@@ -446,7 +446,7 @@ Specular shading works somewhat similar to diffuse shading, so we can run those 
 This kind of shading however calculates the reflected ray direction, and takes $\cos(\theta)$ of the angle between this reflected ray and the direction from the intersection point to the camera. 
 This basically allows us to make the pixel look brighter if the reflection ray is directly pointed towards the camera, else we’ll just scale it down.
 
-We can calculate the reflected ray using this algorithm(again, try to visualize it. Draw the vector diagrams on a paper and solve it by hand to really understand what is going on)
+We can calculate the reflected ray using this algorithm (again, try to visualize it. Draw the vector diagrams on a paper and solve it by hand to really understand what is going on)
 
 ```cpp
 Vector reflected_ray = (res.normal * 
@@ -465,7 +465,7 @@ Vector view_vec = (Vector)ray.origin - res.intersection_point;
     </div>
 </div>
 
-The $\theta$ is just 0 here, hence taking a dot product of those 2 vectors(normalized) gives us $\cos(\theta)$ will inturn just gives us a specular factor of 1.0
+The $\theta$ is just 0 here, hence taking a dot product of those 2 vectors (normalized) gives us $\cos(\theta)$ will inturn just gives us a specular factor of 1.0
 
 2. Case 2, The reflected ray is pointed a bit away from the camera:
 
@@ -475,11 +475,11 @@ The $\theta$ is just 0 here, hence taking a dot product of those 2 vectors(norma
     </div>
 </div>
 
-The $\theta$ is > 0 here, hence taking a dot product of those 2 vectors(normalized) gives us $\cos(\theta)$ will inturn just gives us a specular factor of < 1.0
+The $\theta$ is > 0 here, hence taking a dot product of those 2 vectors (normalized) gives us $\cos(\theta)$ will inturn just gives us a specular factor of < 1.0
 
 Before adding this factor to TotalBrightness, let’s scale Diffuse down a little bit, we don’t want to overshoot TotalBrightness of 1.
 
-We have now have our Total brightness which looks like this(Scaling down Diffuse to 80%, and Specular to 20%, as Ambient is very small, we can ignore it, as, if the total value does go above 1, our clamp function will take care of it):
+We have now have our Total brightness which looks like this (Scaling down Diffuse to 80%, and Specular to 20%, as Ambient is very small, we can ignore it, as, if the total value does go above 1, our clamp function will take care of it):
 
 `TotalBrightness = Clamp(Ambient + (Diffuse * 0.8) + (Specular * 0.2))`
 
@@ -546,7 +546,7 @@ This is how your normal $y=x$ graph looks like. This is what happens if we take 
     </div>
 </div>
 
-As we can see, the line looks more squished downwards(points taken between $0<x<1$, and $0<y<1$) when we take the input to a stronger power.
+As we can see, the line looks more squished downwards (points taken between $0<x<1$, and $0<y<1$) when we take the input to a stronger power.
 
 We want to tighten the specular “reflection” to a smaller point as the distance increases from the center of the reflection point.
 
@@ -602,7 +602,7 @@ We’ll apply similar powers to a $\cos(\theta)$ function, and let's see what re
     </div>
 </div>
 
-We can see the cos graph being squished. For our project, this isn’t enough! We’ll need to take cos to the power of (powers of 2) to get a good looking shade. We can take power numbers like (2, 8, 16, 32, 128, 256). We can call this number ‘roughness’(although I'm not sure if this is what the mainstream industry calls ‘roughness’. I’m just calling it roughness for the sake of my project)  I’ve set 32 as the maximum roughness amount in my project. I use the term “rough” and “specular” almost interchangeably in this document, even if they might have very different real life meanings attached to them.
+We can see the cos graph being squished. For our project, this isn’t enough! We’ll need to take cos to the power of (powers of 2) to get a good looking shade. We can take power numbers like (2, 8, 16, 32, 128, 256). We can call this number ‘roughness’ (although I'm not sure if this is what the mainstream industry calls ‘roughness’. I’m just calling it roughness for the sake of my project)  I’ve set 32 as the maximum roughness amount in my project. I use the term “rough” and “specular” almost interchangeably in this document, even if they might have very different real life meanings attached to them.
 
 To structure this in code, we can expose the roughness amount to the user, by making it a member of the sphere. When the user at the frontend sets up all the components, scene, etc, they can configure the color and the roughness of the sphere.
 
@@ -643,7 +643,7 @@ Also feel free to tweak certain numbers, edit the equations, multiplying/dividin
 
 ## Texturing
 
-Before we dive into texturing a sphere, Let’s talk about UVs. No, I’m not talking about the spectrum of light after the visible range, I’m talking about converting a set of points(Usually in 3D) from one reference frame to another(usually in 2D). 
+Before we dive into texturing a sphere, Let’s talk about UVs. No, I’m not talking about the spectrum of light after the visible range, I’m talking about converting a set of points (Usually in 3D) from one reference frame to another (usually in 2D). 
 
 The 3D axes are named X, Y and Z, and therefore when converted into a 2D representation, the axes are named U and V, and hence we end up with a term called UV mapping.
 
@@ -662,7 +662,7 @@ You can think of it as a way to unfold an origami model into a sheet of paper. T
 
 Instead of coloring faces(how normal games and renderers do), as we are working with Ray-Tracing, we are working with points/pixels on screen directly and not faces. We’ll be coloring multiple points along the given face.
 
-Here’s an animation clip from the [video](https://www.youtube.com/watch?v=sLqXFF8mlEU) by Sebastian Lague(An Amazing youtuber one must checkout) which does the same thing as mentioned above.
+Here’s an animation clip from the [video](https://www.youtube.com/watch?v=sLqXFF8mlEU) by Sebastian Lague (An Amazing youtuber one must checkout) which does the same thing as mentioned above.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -674,7 +674,7 @@ As you can see from the animation, we first unfold a sphere into multiple points
 
 We have to now achieve this mathematically.
 
-The UV image is the rectangular image you see in the animation, it's the image we’ll be mapping over the sphere. The main thing to remember with the UV representation is, both its height and width is a number between 0 and 1. How can an image have a width of 0.5? You might ask. Well, this is where we can multiply the said width factor(= 0.5), with the width of the input image(let’s say = 1920px), to get the final width of 960px, which is exactly in the middle of our input image. We can then query this pixel from our input image, and then pass it on as the color of the point.
+The UV image is the rectangular image you see in the animation, it's the image we’ll be mapping over the sphere. The main thing to remember with the UV representation is, both its height and width is a number between 0 and 1. How can an image have a width of 0.5? You might ask. Well, this is where we can multiply the said width factor (= 0.5), with the width of the input image (let’s say = 1920px), to get the final width of 960px, which is exactly in the middle of our input image. We can then query this pixel from our input image, and then pass it on as the color of the point.
 
 From now onwards, as rectangles have weird dimensions, I'll just be using squares with equal dimensions in my project, as they are simple to work with, and they give little to none noise towards the end.
 
@@ -703,7 +703,7 @@ In a UV plane, each point has 2 properties, namely the height and width which is
 
 Think of it this way. Let’s define the front of the sphere to be some vector pointing from the center to a certain point on the sphere. You will need to visualize your own “front” for this sphere. I went ahead such that the `Normal` member of `Object3D` defines the front of the sphere at vector position $(0, 1, 0)$, similar to how the camera calls $(0, 1, 0)$ “front” in my system.
 
-Now we can project the given point on our sphere(Point B in the visualization) onto a horizontal plane which goes through the center of the sphere and the normal/front of the sphere(Point D). We can now calculate the angle between this new projected vector and our normal.
+Now we can project the given point on our sphere (Point B in the visualization) onto a horizontal plane which goes through the center of the sphere and the normal/front of the sphere (Point D). We can now calculate the angle between this new projected vector and our normal.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -721,7 +721,7 @@ We do the same, but now for a vertical plane instead.
 
 We know, these angles go from $0^\circ$ to $360^\circ$(that’s how angles work), we know UV coordinates run from 0 to 1. All we need to do is, map the angles to the UV coordinates. 
 
-WAIT! Before we do that, we want a few things first. We want the normal to point at the middle of the UV texture, and not the start $(0, 0)$ of it. I want it to point to $(0.5, 0.5)$ on the UV texture. To do that, I’ll need to shift over the range of the angles from $0^\circ \to 360^\circ$($0$ to $2\pi$ in reality/radians), to something like $-180^\circ \to 180^\circ$($-\pi \to \pi$), where 0(which is in the middle) can map over to a value like 0.5.
+WAIT! Before we do that, we want a few things first. We want the normal to point at the middle of the UV texture, and not the start $(0, 0)$ of it. I want it to point to $(0.5, 0.5)$ on the UV texture. To do that, I’ll need to shift over the range of the angles from $0^\circ \to 360^\circ$($0$ to $2\pi$ in reality/radians), to something like $-180^\circ \to 180^\circ$($-\pi \to \pi$), where 0 (which is in the middle) can map over to a value like 0.5.
 
 This is all about math functional range manipulation, which is not that hard. If we know what our input is, all we need to do is, multiply/divide/add/subtract a few constants in a particular order, to get a different range towards the end.
 
@@ -739,7 +739,7 @@ Cpp/C’s math library has a function called `atan2(y, x)` which does the same a
 Keep in mind, when Y is imagined to be up, and X is imagined to be right, as on a 2D grid, the angle between the vector can be found out using this method of `atan2(y, x)`.
 </i></small>
 
-To get the angle along the vertical plane, we need to ‘squish’ the 3 dimensions into just 2 dimensions, as we are now dealing with not just X, Y but also the Z(up) coordinates. We can ‘squish’ the X and Y into one plane, and then atan2 similarly with Z, to get our angle. I will explain how this works more later onwards. This ‘squishing’ on dimensions onto just one dimension can be achieved using taking square, adding' em up, and taking a square-root of the entire term. I’m basically just taking the magnitude, but one can image it to be ‘squishing’ X and Y dimensions into just a single vertical plane.
+To get the angle along the vertical plane, we need to ‘squish’ the 3 dimensions into just 2 dimensions, as we are now dealing with not just X, Y but also the Z (up) coordinates. We can ‘squish’ the X and Y into one plane, and then atan2 similarly with Z, to get our angle. I will explain how this works more later onwards. This ‘squishing’ on dimensions onto just one dimension can be achieved using taking square, adding' em up, and taking a square-root of the entire term. I’m basically just taking the magnitude, but one can image it to be ‘squishing’ X and Y dimensions into just a single vertical plane.
 
 In this use case, we don’t even need to take square roots as these points are from our normal vector, and hence the magnitude will just be one even if we square it!
 
@@ -757,7 +757,7 @@ Well, let’s take a look at our projection image. This is called an equirectang
     </div>
 </div>
 
-I want you to imagine that you are looking at a 3D spherical model of the earth from the lat-long $0^\circ$, $0^\circ$. As you move right on the map, your angle on the imaginary globe starts increasing! Once you reach the edge on the map, you reach lat-long $0^\circ$, $180^\circ$, and you taper back to the other side of the map(left side), and you continue till you reach the center once again!
+I want you to imagine that you are looking at a 3D spherical model of the earth from the lat-long $0^\circ$, $0^\circ$. As you move right on the map, your angle on the imaginary globe starts increasing! Once you reach the edge on the map, you reach lat-long $0^\circ$, $180^\circ$, and you taper back to the other side of the map (left side), and you continue till you reach the center once again!
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -765,7 +765,7 @@ I want you to imagine that you are looking at a 3D spherical model of the earth 
     </div>
 </div>
 
-Looking at our 3D earth model from a top-down view(from north pole), can help us visualize this relation from angle to UV. Assuming Greenwich to be $0^\circ$
+Looking at our 3D earth model from a top-down view (from north pole), can help us visualize this relation from angle to UV. Assuming Greenwich to be $0^\circ$
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -773,12 +773,12 @@ Looking at our 3D earth model from a top-down view(from north pole), can help us
     </div>
 </div>
 
-As the angle increases till $180^\circ$(vector sweeping across asia!) we can move to the right of the UV image(to cover Asia on the UV image). We can go back to $0^\circ$, and imagine as the angle decreases till $-180^\circ$ (vector sweeping across the Americas), we can move to the left of the UV image(to cover America on the UV image). 
+As the angle increases till $180^\circ$(vector sweeping across asia!) we can move to the right of the UV image(to cover Asia on the UV image). We can go back to $0^\circ$, and imagine as the angle decreases till $-180^\circ$ (vector sweeping across the Americas), we can move to the left of the UV image (to cover America on the UV image). 
 
 We know `atan2` in C gives us a range of $-180^\circ \to 180^\circ$. So we can move on with this. 
 
 The mappings can be summarized as the following:
-Remember, the sign convention doesn’t really matter here, we can adjust them to our liking while working on the code. In this particular example, i’ve taken the vector lying on asia(as seen in the previous image), to be $+90^\circ$, and the other side of the globe to be $-90^\circ$.
+Remember, the sign convention doesn’t really matter here, we can adjust them to our liking while working on the code. In this particular example, i’ve taken the vector lying on asia (as seen in the previous image), to be $+90^\circ$, and the other side of the globe to be $-90^\circ$.
 
 | Degree/Radians | Point where the vector is pointing on earth |
 | :----------- | :-----------: |
@@ -811,7 +811,7 @@ The mapping for this one would be a little bit hard to imagine. Here’s an imag
     </div>
 </div>
 
-As I turn upwards, I want to go towards $90^\circ$(i.e top of the UV image), and then (move aside to the left side of the UV). Then I want to move down the image again, back to 0 lat$.(+90^\circ \to 0^\circ)$. Then moving from $0^\circ \to -90^\circ$, moves directly downwards on the image, i.e the southpole. Then to move back to the center 0, 0, we move from $-90^\circ to 0^\circ$!
+As I turn upwards, I want to go towards $90^\circ$(i.e top of the UV image), and then (move aside to the left side of the UV). Then I want to move down the image again, back to 0 lat. $(+90^\circ \to 0^\circ)$. Then moving from $0^\circ \to -90^\circ$, moves directly downwards on the image, i.e the southpole. Then to move back to the center 0, 0, we move from $-90^\circ to 0^\circ$!
 The mappings can be imagined as follows:
 
 | Degree/Radians | Point where the vector is pointing on earth |
@@ -822,7 +822,7 @@ The mappings can be imagined as follows:
 | $-90^\circ$ / $-\frac{\pi}{2}$ | South Pole |
 | $360^\circ$ / $2\pi$ | Same as $0^\circ$ / $0$ |
 
-We can achieve both squishing of the dimensions as mentioned earlier, and the mirroring of the vertical(left/right) side on the other side by just squaring and adding up the normal’s `x` and `y` value, and taking inverse $\tan$ of `z` divided by the squared added term gives us our formula!
+We can achieve both squishing of the dimensions as mentioned earlier, and the mirroring of the vertical (left/right) side on the other side by just squaring and adding up the normal’s `x` and `y` value, and taking inverse $\tan$ of `z` divided by the squared added term gives us our formula!
 
 `atan2(z, (x^2 + y^2))` is our formula! We don’t need to take the square root of the 2nd argument as the vector’s magnitude is still 1.
 
@@ -992,7 +992,7 @@ Using Normal maps, we can go from something that looks like this
     </div>
 </div>
 
-To something like this(take a look at Laos, Eastern Coast of the Arabian Peninsula, Western Coast of Australia, etc to notice the shading difference),
+To something like this (take a look at Laos, Eastern Coast of the Arabian Peninsula, Western Coast of Australia, etc to notice the shading difference),
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -1110,7 +1110,7 @@ We can then later use `res.normal` to calculate specularness/roughness, diffuse 
 
 ## Small Note
 
-For anyone who’s trying to, or atleast wants to build something similar to this, here are a few pointers(Cpp Pun unintended?) to keep in mind!
+For anyone who’s trying to, or atleast wants to build something similar to this, here are a few pointers (Cpp Pun unintended?) to keep in mind!
 
 - It doesn’t matter what language you program this in. I started off by directly implementing this in python, as that was the only language I knew best! I learnt Cpp recently, and as it allows me to manipulate pointers and as such, I shifted my project to Cpp. I am probably not even using the full potential that Cpp gives me, but It doesn’t really matter as far as I’m working on the project.
 - Use desmos, geogebra, physical papers to solve equations, and visualize the math going behind the theory. Play around with numbers in your program. Tweak constants, and see what happens!
@@ -1119,7 +1119,7 @@ For anyone who’s trying to, or atleast wants to build something similar to thi
 - Before actually starting the project, I suggest you go through youtube videos explaining how ray tracing works in general.
 - Youtube, Reddit, Stackoverflow, are your best friends. Use them as much as you can! Try asking other people for help if you feel stuck.
 - The ray-tracer slows down a lot later, especially after adding specular shading if you haven’t parallelized it yet. Until then, you can just focus on adding basic diffuse shading.
-- There are various other parts to this project that I didn’t even touch in this devlog, such as parallelizing/multithreading calculations of ray-intersections(the main reason why I shifted to Cpp, and the reason I'm using raw pointers). I don’t exactly know how to implement multithreading in Cpp, which is why I’m using a library called [BS_ThreadPool](https://github.com/bshoshany/thread-pool). There is also an Image class which I have written myself which helps me read and write images to disk. It stores the entire image data in one long array, which is easier for me to visualize than a huge matrix while trying to parallelize the calculations. This image class is also responsible for reading images in, such as texture maps. It has 3 modes: RGBA, RGB, Grayscale, to save as much memory as possible.
+- There are various other parts to this project that I didn’t even touch in this devlog, such as parallelizing/multithreading calculations of ray-intersections (the main reason why I shifted to Cpp, and the reason I'm using raw pointers). I don’t exactly know how to implement multithreading in Cpp, which is why I’m using a library called [BS_ThreadPool](https://github.com/bshoshany/thread-pool). There is also an Image class which I have written myself which helps me read and write images to disk. It stores the entire image data in one long array, which is easier for me to visualize than a huge matrix while trying to parallelize the calculations. This image class is also responsible for reading images in, such as texture maps. It has 3 modes: RGBA, RGB, Grayscale, to save as much memory as possible.
 
 ```cpp
 enum FileType {
@@ -1155,9 +1155,9 @@ public:
 }
 ```
 
-I also try to imitate anti-aliasing, which is basically a way to make jagged edges more smooth, and I achieve this by taking 4 ray-shoot samples per pixel(in their own directions with a slight deviation), and then averaging out their color values! 
+I also try to imitate anti-aliasing, which is basically a way to make jagged edges more smooth, and I achieve this by taking 4 ray-shoot samples per pixel (in their own directions with a slight deviation), and then averaging out their color values! 
 
-The Image now takes even longer to render as you are rendering them at double resolution(in each direction, width and height), and averaging out the pixels!
+The Image now takes even longer to render as you are rendering them at double resolution (in each direction, width and height), and averaging out the pixels!
 
 ```cpp
 BS::thread_pool pool;

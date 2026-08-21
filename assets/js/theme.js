@@ -132,18 +132,67 @@ let addMermaidZoom = (records, observer) => {
   observer.disconnect();
 };
 
-let addNomnomlZoom = (records, observer) => {
-  var svgs = d3.selectAll(".nomnoml svg");
-  svgs.each(function () {
-    var svg = d3.select(this);
+let addNomnomlZoom = () => {
+  document.querySelectorAll(".nomnoml svg").forEach((svgElement) => {
+    // Avoid initializing the same SVG more than once
+    if (svgElement.dataset.nomnomlZoomInitialized === "true") {
+      return;
+    }
+
+    svgElement.dataset.nomnomlZoomInitialized = "true";
+
+    const svg = d3.select(svgElement);
+
+    // Wrap SVG contents so only the diagram is transformed
     svg.html("<g>" + svg.html() + "</g>");
-    var inner = svg.select("g");
-    var zoom = d3.zoom().on("zoom", function (event) {
+
+    const inner = svg.select("g");
+
+    const zoom = d3.zoom().on("zoom", function (event) {
       inner.attr("transform", event.transform);
+      updateResetButton(event.transform);
     });
+
     svg.call(zoom);
+
+    // The .nomnoml element is the button's positioning container
+    const container = svgElement.parentElement;
+
+    // Remove any stale button left behind
+    const oldButton = container.querySelector(".nomnoml-reset-zoom");
+    if (oldButton) {
+      oldButton.remove();
+    }
+
+    // Create reset button
+    const resetButton = document.createElement("button");
+    resetButton.textContent = "Reset zoom";
+    resetButton.classList.add("nomnoml-reset-zoom");
+    resetButton.style.display = "none";
+
+    container.appendChild(resetButton);
+
+    function updateResetButton(transform) {
+      const isDefault =
+        transform.x === 0 &&
+        transform.y === 0 &&
+        transform.k === 1;
+
+      resetButton.style.display = isDefault ? "none" : "block";
+    }
+
+    resetButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      svg
+        .transition()
+        .duration(250)
+        .call(zoom.transform, d3.zoomIdentity);
+    });
+
+    // Start in the default state
+    updateResetButton(d3.zoomIdentity);
   });
-  observer.disconnect();
 };
 
 let setMermaidTheme = (theme) => {
@@ -173,28 +222,39 @@ let setMermaidTheme = (theme) => {
 };
 
 let setNomnomlTheme = (theme) => {
-  /* Re-render the SVG, based on https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_includes/mermaid.html */
+  /* Re-render the SVG based on the selected theme */
   document.querySelectorAll(".nomnoml").forEach((elem) => {
-    // Get the code block content from previous element, since it is the mermaid code itself as defined in Markdown, but it is hidden
-    const nomnomlCode = elem.previousSibling.childNodes[0].innerText;
-    let strokeColor = "#fill: #eee8d5; #fdf6e3\n#stroke: #33322E\n"
-    if (theme === "dark") {
-      strokeColor = "#fill: #555555; #555555\n#stroke: #eeeeee\n"
+    // Remove the old reset button because the SVG is about to be replaced
+    const oldButton = elem.querySelector(".nomnoml-reset-zoom");
+    if (oldButton) {
+      oldButton.remove();
     }
-    const svgCode = nomnoml.renderSvg(strokeColor+nomnomlCode);
+
+    // Get the original nomnoml code from the hidden code block
+    const nomnomlCode = elem.previousSibling.childNodes[0].innerText;
+
+    let strokeColor = "#fill: #eee8d5; #fdf6e3\n#stroke: #33322E\n";
+
+    if (theme === "dark") {
+      strokeColor = "#fill: #555555; #555555\n#stroke: #eeeeee\n";
+    }
+
+    // Render the new SVG
+    const svgCode = nomnoml.renderSvg(strokeColor + nomnomlCode);
+
     elem.innerHTML = svgCode;
 
-    let svgElem = elem.querySelector('svg');
+    const svgElem = elem.querySelector("svg");
+
     if (svgElem) {
-      svgElem.setAttribute('width', '100%');
+      svgElem.setAttribute("width", "100%");
     }
   });
 
-  const observable = document.querySelector(".nomnoml svg");
-  if (observable !== null) {
-    var observer = new MutationObserver(addNomnomlZoom);
-    const observerOptions = { childList: true };
-    observer.observe(observable, observerOptions);
+  // The SVGs have now been completely replaced, so initialize
+  // D3 zoom and the reset buttons on the new SVGs.
+  if (typeof d3 !== "undefined") {
+    addNomnomlZoom();
   }
 };
 

@@ -30,16 +30,56 @@ document.addEventListener("readystatechange", () => {
     if (typeof d3 !== "undefined") {
       window.addEventListener("load", function () {
         var svgs = d3.selectAll(".nomnoml svg");
+
         svgs.each(function () {
           var svg = d3.select(this);
+
+          // Wrap the SVG contents so only the diagram is transformed
           svg.html("<g>" + svg.html() + "</g>");
+
           var inner = svg.select("g");
+
           var zoom = d3.zoom().on("zoom", function (event) {
             inner.attr("transform", event.transform);
+            updateResetButton(event.transform);
           });
+
           svg.call(zoom);
+
+          // Create reset button
+          var container = svg.node().parentElement;
+
+          var resetButton = document.createElement("button");
+          resetButton.textContent = "Reset zoom";
+          resetButton.classList.add("nomnoml-reset-zoom");
+
+          // Hidden until the diagram is moved
+          resetButton.style.display = "none";
+
+          // Overlay it on top of the diagram
+          container.appendChild(resetButton);
+
+          function updateResetButton(transform) {
+            var isDefault =
+              transform.x === 0 &&
+              transform.y === 0 &&
+              transform.k === 1;
+
+            resetButton.style.display = isDefault ? "none" : "block";
+          }
+
+          resetButton.addEventListener("click", function (event) {
+            // Prevent the button click from being interpreted as an SVG interaction
+            event.stopPropagation();
+
+            svg
+              .transition()
+              .duration(250)
+              .call(zoom.transform, d3.zoomIdentity);
+          });
         });
       });
     }
+
   }
 });

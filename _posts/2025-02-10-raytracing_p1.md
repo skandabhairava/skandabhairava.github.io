@@ -12,7 +12,7 @@ toc:
 
 ## Introduction
 
-This log goes into my journey behind discovering the truth behind virtual 3D objects. Whatever I mention in this devlog might not be right(and it probably isn’t), I’m just conveying whatever I’ve understood based on my own trial and errors. If I'm wrong, please correct me and help me learn! I've always been fascinated by how games work. I know what a ‘cube’ is, but how does a game draw such a cube on my screen without much effort? Questions like these led me on a short journey to understand the basics of “rendering”, aka drawing images on screen using math.
+This log goes into my journey behind discovering the truth behind virtual 3D objects. Whatever I mention in this devlog might not be right (and it probably isn’t), I’m just conveying whatever I’ve understood based on my own trial and errors. If I'm wrong, please correct me and help me learn! I've always been fascinated by how games work. I know what a ‘cube’ is, but how does a game draw such a cube on my screen without much effort? Questions like these led me on a short journey to understand the basics of “rendering”, aka drawing images on screen using math.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -28,13 +28,13 @@ There are many ways of rendering, one efficient and popular way is to represent 
     </div>
 </div>
 
-The information for the triangles are then sent to the GPU(Graphical Processing Unit) which can calculate the position of the points relative to your screen shape, draw them, and color in the triangles. The CPU is quite small, and is focused more on the L in ALU(Arithmetic and Logic Unit). The CPU has a lot of cache memory, and is geared to work around Arithmetic and Logical calculations. Whereas the GPU is more geared towards Arithmetic calculations only, it has less cache as well. The GPU contains multiple cores which can process multiple calculations per second, whereas the CPU only has 4-8 cores(on a modern day average PC). 
+The information for the triangles are then sent to the GPU (Graphical Processing Unit) which can calculate the position of the points relative to your screen shape, draw them, and color in the triangles. The CPU is quite small, and is focused more on the L in ALU (Arithmetic and Logic Unit). The CPU has a lot of cache memory, and is geared to work around Arithmetic and Logical calculations. Whereas the GPU is more geared towards Arithmetic calculations only, it has less cache as well. The GPU contains multiple cores which can process multiple calculations per second, whereas the CPU only has 4-8 cores (on a modern day average PC). 
 
 This kind of rendering is employed by many games and softwares as it is really fast, less expensive memory wise, and it's very easy on the math side too!
 
-Most rendering math, FX, lighting, shadows, etc work on a lot of little tricks and hacks to lift up the load on processors, hence it makes images look a little bit fake-ish(nowadays, there have been many improvements which give a real-ish look to this kind of rendering, it’s all about finding the right trick to employ at what instance)
+Most rendering math, FX, lighting, shadows, etc work on a lot of little tricks and hacks to lift up the load on processors, hence it makes images look a little bit fake-ish (nowadays, there have been many improvements which give a real-ish look to this kind of rendering, it’s all about finding the right trick to employ at what instance)
 
-Another method of rendering is raytracing. Raytracing doesn’t break down objects into points, but instead treats the object as a whole. It’s a method which treats light rays ‘emitted’ by a light source as a real light ray(I won’t go into the question if light is a particle or wave here, that's the job of physicists to figure out, although it is really cool to think about. Here we consider light as photons, or basically the beam which the photon traces) and calculate the way in which light interacts with the objects in the scene to give it a real life-like look. All these calculations are immense, and hence it takes a lot of time for a computer to render such a scene.
+Another method of rendering is raytracing. Raytracing doesn’t break down objects into points, but instead treats the object as a whole. It’s a method which treats light rays ‘emitted’ by a light source as a real light ray (I won’t go into the question if light is a particle or wave here, that's the job of physicists to figure out, although it is really cool to think about. Here we consider light as photons, or basically the beam which the photon traces) and calculate the way in which light interacts with the objects in the scene to give it a real life-like look. All these calculations are immense, and hence it takes a lot of time for a computer to render such a scene.
 RTX = Raytracing
 
 Most games/softwares which allow ray tracing, allows one to run all the required calculations on the GPU. I, on the other hand, started learning C++ just a few months back, so I don’t really know how to send and receive data to and from the GPU in this language, and if I tried to do it, I might end up with a broken system which is even more slower than what it is already right now due to some in-efficient usage of memory. All calculations in my system work on the CPU. I have tried running the calculations parallelly/concurrently using multiple threads, but that just gives it a boost of 2-3 seconds for 1-3 spheres per frame as far as i’ve tested, which isn’t a lot at first, but it is a lot of seconds saved when I render multiple frames to record an animation. I’m probably doing something wrong and in-efficient, but I don’t know just yet.
@@ -51,7 +51,7 @@ Before I move into vector math, let's recall what dimensions really are. When I 
 
 Dimension is a mathematical term which can simply be understood as different quantities which are totally unrelated to each other. North-South, East-West, Up-Down, is a common example used for dimensions. In this particular example, we see 3 directions, which are totally unrelated to each other. If I move 5 steps North, I can’t tell how much I’ve moved in the East-West direction. 
 
-The number of dimensions are also taken in reference to the data we have recorded, for example, a point in space can be given coordinate data of 3 Dimensions(Example, point at {0, 0, 0}), if the space is 3D in nature. Another example of Dimensions is: Distance vs Time graphs.
+The number of dimensions are also taken in reference to the data we have recorded, for example, a point in space can be given coordinate data of 3 Dimensions (Example, point at {0, 0, 0}), if the space is 3D in nature. Another example of Dimensions is: Distance vs Time graphs.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -59,7 +59,7 @@ The number of dimensions are also taken in reference to the data we have recorde
     </div>
 </div>
 
-Here, the Time(which is considered as a Dimension in “reference”(which is the keyword here), to the graph/recorded data) is plotted on the X-axis. Distance(another Dimension in reference to the graph) is plotted on the Y-axis. We draw this information spatially up-down, left-right as it is way easier for our brain to grasp and visualize spatial information rather than just numbers.
+Here, the Time (which is considered as a Dimension in “reference” (which is the keyword here), to the graph/recorded data) is plotted on the X-axis. Distance (another Dimension in reference to the graph) is plotted on the Y-axis. We draw this information spatially up-down, left-right as it is way easier for our brain to grasp and visualize spatial information rather than just numbers.
 
 The given graph can also be written down like this
 
@@ -266,7 +266,7 @@ $$
 ($\hat{i}$ is just the direction $i$ was pointing at)
 
 <a id="dot-product"></a>
-A small point to understand, the dot product of 2 vectors(say A, B) is also equal to $\lvert A \rvert \lvert B \rvert \cos(\theta)$, where $\theta$ is the angle between the vectors themselves.
+A small point to understand, the dot product of 2 vectors (say A, B) is also equal to $\lvert A \rvert \lvert B \rvert \cos(\theta)$, where $\theta$ is the angle between the vectors themselves.
 
 Keeping in mind, the graph of $\cos(\theta)$ and $\sin(\theta)$ can help a lot while dealing with equations and understanding them.
 
@@ -358,13 +358,13 @@ If the vectors are $180^\circ$ apart, $\cos(180^\circ) = -1$, the dot product wo
 And so on…
 
 
-Normalizing a vector is basically a way to make a given vector(of say, some magnitude $X$, and some direction $\theta$) into a unit vector, which has a magnitude of 1, and the direction remains the same($\theta$).
+Normalizing a vector is basically a way to make a given vector (of say, some magnitude $X$, and some direction $\theta$) into a unit vector, which has a magnitude of 1, and the direction remains the same($\theta$).
 
 Normalised $\hat{x} = \frac{\vec{x}}{\lvert \vec{x} \rvert}$
 
-From now onwards, $\vec{x}$ represents any vector, and $\hat{x}$ represents any unit vector(any vector with a magnitude of 1). All unit vectors are vectors, but not all vectors are unit vectors.
+From now onwards, $\vec{x}$ represents any vector, and $\hat{x}$ represents any unit vector (any vector with a magnitude of 1). All unit vectors are vectors, but not all vectors are unit vectors.
 
-Normalizing basically gives us a multiplicative identity of the vector in that direction, so if we wanted to scale up the vector, we can just multiply the given unit vector with a single number. An example of normalizing on a 1D vector(i.e a number line) can be imagined like this.
+Normalizing basically gives us a multiplicative identity of the vector in that direction, so if we wanted to scale up the vector, we can just multiply the given unit vector with a single number. An example of normalizing on a 1D vector (i.e a number line) can be imagined like this.
 
 Taking x as -5, when we try and normalize this 1D vector we get this:
 
@@ -374,7 +374,7 @@ Taking x as 10, when we try and normalize this 1D vector we get this:
 
 $\hat{x} = \frac{\vec{10}}{\lvert \vec{10} \rvert} = \frac{10}{\sqrt{(10)^2}} = \frac{10}{\sqrt{100}} = \frac{10}{10} = 1$
 
-As we can see, The 1D vector has been “normalized” to a unit vector of magnitude 1, but it still retains its directional information(in a 1D vector, the direction is just denoted by the +/- signs). We can now use this normalized vector to get other vectors in this general direction by multiplying any number to scale up this normalized vector($-1 * 6 = -6$; $8 * 1 = 8$).
+As we can see, The 1D vector has been “normalized” to a unit vector of magnitude 1, but it still retains its directional information (in a 1D vector, the direction is just denoted by the +/- signs). We can now use this normalized vector to get other vectors in this general direction by multiplying any number to scale up this normalized vector ($-1 * 6 = -6$; $8 * 1 = 8$).
 The same can be applied to multiple dimensional vectors.
 
 One last important piece of information, there are different ways to orient the x, y, z axis in a 3D world space, but for my project I have gone with something that looks like this. 
@@ -393,7 +393,7 @@ Imagine X value increases as one goes to the right. Y value increases as one goe
     </div>
 </div>
 
-Many systems make use of the right hand system. Many systems also take ‘Z’ as the UP vector, and ‘Y’ as the SIDE vector(which we will be following). We will be sticking with the Left hand system throughout our project.
+Many systems make use of the right hand system. Many systems also take ‘Z’ as the UP vector, and ‘Y’ as the SIDE vector (which we will be following). We will be sticking with the Left hand system throughout our project.
 
 Here’s a small test to see if you could keep up with the math,
 What is $(1, 0, 0) \cdot (0, 0.826, 0)$? There are 2 formulas or one simple mathematical property which can be used to figure out the answer.
@@ -491,7 +491,7 @@ In all my illustrations of vectors, the starting position has always been (0, 0)
 
 A 2D Vector just holds 2 pieces of information:
 1. Their own magnitude/strength.
-2. Their direction/angle(in relation to some axis, typically the X-axis).
+2. Their direction/angle (in relation to some axis, typically the X-axis).
 
 So, if vectors don’t have a starting point, nor an ending point, we can draw the 2 example vectors given above together, like this:
 
@@ -527,11 +527,11 @@ The resultant vector on the same graph looks something like this:
 
 This forms a triangle! 
 Well, any 3 points connected together using lines forms a triangle on the plane of the 3 points. 
-Take a look at the vector directions, $u + v$, where u is facing the starting position of v(again, we have just moved v’s starting position, as it doesn’t really matter), and the resultant vector starts from u’s starting position, and points at v’s ending position(ending position doesn’t matter as well).
+Take a look at the vector directions, $u + v$, where u is facing the starting position of v (again, we have just moved v’s starting position, as it doesn’t really matter), and the resultant vector starts from u’s starting position, and points at v’s ending position (ending position doesn’t matter as well).
 
 This is the triangular law of vector addition!
 
-Vector subtraction is similar, but the only difference is, we’ll be rotating the vector which is the subtrahend(totally didn’t search that term up, yup) $180^\circ$ across, before adding them up using the triangular law!
+Vector subtraction is similar, but the only difference is, we’ll be rotating the vector which is the subtrahend (totally didn’t search that term up, yup) $180^\circ$ across, before adding them up using the triangular law!
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -578,7 +578,7 @@ Vector subtraction is similar, but the only difference is, we’ll be rotating t
     </div>
 </div>
 
-We have already gone through multiplication of a 2D vector with a linear term(single number), but I will re-paste the example here.
+We have already gone through multiplication of a 2D vector with a linear term (single number), but I will re-paste the example here.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -597,7 +597,7 @@ We have already gone through multiplication of a 2D vector with a linear term(si
     </div>
 </div>
 
-Normalizing of a vector(i.e getting a unit vector in the same direction):
+Normalizing of a vector (i.e getting a unit vector in the same direction):
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
@@ -711,7 +711,7 @@ $\sin^2(x) + \cos^2(x) = 1$
 We can imagine the trig identity in a similar fashion! Let vector `a` have an up component of $\sin(\theta_a)$, and let it have a horizontal component of $\cos(\theta_a)$. To get the total magnitude, we need to $\sqrt{x^2 + y^2}$, which in this case would be $\sqrt{\cos^2(\theta_a) + \sin^2(\theta_a)}$, and as the amplitude of $\sin$ and $\cos$ is just $1$, we don’t need to take a square root, as $\sqrt{1} = 1$.
 Thus, we can also prove why $\sqrt{\cos^2(\theta_a) + \sin^2(\theta_a)} = 1$, for any angle $\theta_a$.
 
-If my vector had a magnitude other than 1, then I would have to just scale up/down my factor(which in this case, is either $\sin$ or $\cos$ function) by the magnitude of the vector linearly.
+If my vector had a magnitude other than 1, then I would have to just scale up/down my factor (which in this case, is either $\sin$ or $\cos$ function) by the magnitude of the vector linearly.
 The Vertical component of $a = (4, 2)$ is $\lvert a \rvert \times \sin(\theta_a)$, similarly, the horizontal component of a would be $\lvert a \rvert \times \cos(\theta_a)$.
 
 If you would have seen the previous Image, then you might have figured out, you can convert these factors into a vector on the axis, and then add them up together to get the initial vector back.
@@ -731,7 +731,7 @@ Example:
 
 $\theta_a = 0.4636 = 26.5^\circ$
 
-Vertical component factor(i.e VC) =>
+Vertical component factor (i.e VC) =>
 
 $$
 \begin{aligned}
@@ -743,7 +743,7 @@ $$
 
 This will be equal to the y component of the vector, as we are oriented in a way, y is equal to the vertical component
 
-Horizontal component factor(i.e HC) =>
+Horizontal component factor (i.e HC) =>
 
 $$
 \begin{aligned}
@@ -764,7 +764,7 @@ $$
 \end{aligned}
 $$
 
-We went a full circle(trig pun unintended), and came back to the vector.
+We went a full circle (trig pun unintended), and came back to the vector.
 
 I urge you guys to visualize this! Try coming up with various other random vectors, and go full circle, and come back to the original vector. Calculator will be your friend! Also do try to use radians as much as possible.
 
@@ -1003,12 +1003,12 @@ This works fine, until you realize the objects in the render don’t scale when 
     </div>
 </div>
 
-The top right view shows us the view of the camera we just implemented(imagine the window to be the camera). It is completely static, even if we move the object further/closer towards the window(camera).
+The top right view shows us the view of the camera we just implemented (imagine the window to be the camera). It is completely static, even if we move the object further/closer towards the window (camera).
 
 Looking at this diagram, it sort of makes sense. The rectangular viewport remains the same size throughout the depth which the camera can view.
 I.e The rectangular view doesn’t change size, the object remains the same size in relation to its surrounding (cylinders) when we move it closer/further from the camera.
 
-After a bit of wikipedia surfing, I realized this is its own kind of projection called an “[Orthographic projection](https://en.wikipedia.org/wiki/Orthographic_projection)”. Its main property is that, the light rays are parallel to each other(which is what we made, “each pixel shoots off its own ray in the direction of the camera’s normal”), causing the distance of the object to feel as if it were at , and therefore, the size of the image of the object isn’t affected even if we move the object physically closer to the camera.
+After a bit of wikipedia surfing, I realized this is its own kind of projection called an “[Orthographic projection](https://en.wikipedia.org/wiki/Orthographic_projection)”. Its main property is that, the light rays are parallel to each other (which is what we made, “each pixel shoots off its own ray in the direction of the camera’s normal”), causing the distance of the object to feel as if it were at , and therefore, the size of the image of the object isn’t affected even if we move the object physically closer to the camera.
 
 The type of projection we are looking for is called “[Perspective projection](https://en.wikipedia.org/wiki/Perspective_(graphical))”, where the objects are scaled according to their distance from the camera.
 
@@ -1025,8 +1025,8 @@ Here is an illustration of what that might look like.
 However, at one end of the cone, it meets at a single point. Then what's the point of the window? Well we still need the window to see what pixel is going to be colored. The end point of the cone can be called the camera’s origin, and the distance from the origin to the pixel window can be called the focal distance.
 
 <a id="camera_proj"></a>
-Now, all we need to do is calculate the right/front/up (x/y/z) from the camera’s normal vector(if we take the normal of the camera to point “forwards”). We’ll save these 3 vectors in a variable inside the camera object itself, and call it “orthogonals”
-Remember, as we only have 1 vector to figure out the orthogonals, we only have 2 degrees of rotation(i.e up/down, left/right, we can’t roll our view)
+Now, all we need to do is calculate the right/front/up (x/y/z) from the camera’s normal vector (if we take the normal of the camera to point “forwards”). We’ll save these 3 vectors in a variable inside the camera object itself, and call it “orthogonals”
+Remember, as we only have 1 vector to figure out the orthogonals, we only have 2 degrees of rotation (i.e up/down, left/right, we can’t roll our view)
 
 Here are the calculations for figuring out the x/y/z components in relation to the camera’s normal vector:
 
@@ -1070,8 +1070,8 @@ for (unsigned int x = 0; x < this->width; x++)
     }
 ```
 
-dx gives the deviation in the horizontal component of our viewport(not the 3D environment) per pixel
-dz gives the deviation in the vertical component of our viewport(not the 3D environment) per pixel
+dx gives the deviation in the horizontal component of our viewport (not the 3D environment) per pixel
+dz gives the deviation in the vertical component of our viewport (not the 3D environment) per pixel
 
 We can now easily calculate interactions with objects using this mathematical ‘Light ray’.
 
@@ -1079,9 +1079,9 @@ We can now easily calculate interactions with objects using this mathematical �
 
 ## Shooting Light Rays
 
-Just a single vector cannot help us detect if we have intersected with an object. That’s because vectors are not physically connected to any points. They just convey magnitude(i.e some number), and direction. If we need to shoot “rays” from each pixel, we need to set its starting point at the camera’s origin, but as we just confirmed, vectors aren’t enough for that.
+Just a single vector cannot help us detect if we have intersected with an object. That’s because vectors are not physically connected to any points. They just convey magnitude (i.e some number), and direction. If we need to shoot “rays” from each pixel, we need to set its starting point at the camera’s origin, but as we just confirmed, vectors aren’t enough for that.
 
-What if I create an object which contains a “starting point”(which can be represented by a vector), and then also make it contain the “directional vector”?? So we can imagine a ray which starts from the starting position, and then shoots off, into the direction which is parallel to the directional vector.
+What if I create an object which contains a “starting point” (which can be represented by a vector), and then also make it contain the “directional vector”?? So we can imagine a ray which starts from the starting position, and then shoots off, into the direction which is parallel to the directional vector.
 
 12th Grade NCERT Textbook gives us a really good theory backend for that kind of an object.
 
@@ -1140,13 +1140,13 @@ We can define 3 Cases of what happens when a ray intersects a 3D sphere. Here, I
     </div>
 </div>
 
-1. Case 1(Blue line):
+1. Case 1 (Blue line):
     The line doesn’t intersect the object.
 
-2. Case 2(Black line):
+2. Case 2 (Black line):
     The line is tangential to the sphere. I.e It only intersects the sphere at a single point. (Very rare)
 
-3. Case 3(Red line):
+3. Case 3 (Red line):
     The line intersects with the sphere at 2 points.
 
 In this devlog, we will ignore the alpha channel of color. We won’t be considering transparency as that makes color combinations unnecessarily complex.
@@ -1213,7 +1213,7 @@ There are 2 Cases: (The drawing is in 2D, but imagine it in 3D instead)
 
 When we draw it out, we see some relation between the (distance between the center point on the sphere and the closest point on the line) and (if the line intersects the sphere or not)
 
-If the distance is lesser than or equal to the radius of the sphere, we can say that the line is intersecting with the sphere(as in Case2, and vice versa).
+If the distance is lesser than or equal to the radius of the sphere, we can say that the line is intersecting with the sphere (as in Case2, and vice versa).
 
 This little derivation I found out, was probably the one which boosted my way into learning more about ray-tracing, as until this point this was just another “Hobby project” of mine.
 
@@ -1246,7 +1246,7 @@ We are omitting cameras, and pointlights, we’ll consider those objects to be i
 Hence this function gets called at least (`num-of-rays * total-spheres`) times. This is how that looks if the color was set to `R255 G255 B255`
 
 <small><i>
-RGB/Red Green Blue is 3 Bytes long, one byte is 0-255 in length, lesser the number(i.e towards 0), more darker is the color, higher the number(i.e towards 255), more lighter is the color. Hence RGB of 255, 255, 255 is plain white.
+RGB/Red Green Blue is 3 Bytes long, one byte is 0-255 in length, lesser the number (i.e towards 0), more darker is the color, higher the number (i.e towards 255), more lighter is the color. Hence RGB of 255, 255, 255 is plain white.
 </i></small>
 
 Setting up an example scene takes a few seconds to visualize the camera, sphere, and other objects in a 3D environment. If it may be hard to visualize, try out the [Geogebra 3D calculator](https://www.geogebra.org/3d) to map out the locations of components in your scene. This part is also mostly about trial and error, choosing the right coordinates, the right radius, etc. Take your time, and re-roll your numbers!
