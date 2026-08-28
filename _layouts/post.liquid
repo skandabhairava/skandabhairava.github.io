@@ -83,6 +83,10 @@ layout: default
     </div>
   {% endif %}
 
+  <br>
+
+  {% include post_share_btn.liquid blogTitle=page.title %}
+
   {% if site.related_blog_posts and site.related_blog_posts.enabled %}
     {% if page.related_posts == null or page.related_posts %}
       {% include related_posts.liquid %}

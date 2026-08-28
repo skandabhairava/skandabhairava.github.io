@@ -32,7 +32,7 @@ We will mainly go through Execution Parallelism in this part.
 This is how parallelism is categorized based on how it is achieved using different execution mechanism.
 
 The actual execution of tasks can be Truely-parallel, or concurrent.
-<span class="tag-highlight highlight-pink">Parallelism</span> is the ability of tasks to run in parallel in the same instant of time, whereas <span class="tag-highlight highlight-green">Concurrency</span> is the ability where multiple tasks can make progress during overlapping periods of time<sup>[[2]](#2)</sup>.
+<span class="tag-highlight highlight-pink">Parallelism</span> is the ability of tasks to run in parallel in the same instant of time, whereas <span class="tag-highlight highlight-green">Concurrency</span> is the ability where multiple tasks can make progress during overlapping periods of time<sup>[[2]](#2)</sup>. Using the project-dinner-cooking example mentioned previously, our concentration can be considered as being run concurrently, as we can only focus on ONE task (either thinking of adding more salt to our stew, or fixing that one bug in the project/code) at a time.
 
 How, When and Where these tasks run (either parallel or concurrent), depends on the hardware type (Single Core, Multi Core, GPUs, etc), the scheduling algorithm used, when context shifts occur, etc.
 
@@ -43,7 +43,9 @@ What is context switch, job scheduling, etc? If multiple jobs are scheduled to r
 [<start id=a>start] -> [<reference id=t1>task 1] -> [<reference id=t2>task 2] -> [<reference id=t3>task 1] -> [<reference id=t4>task 2] --> [<end id=b>]
 ```
 
-The above chart is an example of concurrency on a single execution hardware (like a single-core processor), following the Round Robin scheduling algorithm. It executes a task for a `time_quantum` period of time, and then preempts (i.e similar to pausing) it, and switches context to another task. After all tasks are exhausted in the pool, we restart from the first task, and so on, untill the tasks are completed.
+The above chart is an example of concurrency on a single execution hardware (like a single-core processor), following a scheduling algorithm similar to Round Robin. It executes a task for a `time_quantum` period of time, and then preempts (i.e similar to pausing) it, and switches context to another task. After all tasks are exhausted in the pool, we restart from the first task, and so on, untill the tasks are completed.
+
+<small><i>Of course, the above graph just shows how time slicing works, etc. Actual implementation of scheduling algorithms are more complicated</i></small>
 
 ```nomnoml
 #direction: right
@@ -62,7 +64,9 @@ Each type of execution prallelism model has its own advantages and disadvantages
 ##### Multi-processing
 - Task size: Coarse
 
-Multi-processing and its scheduling is taken care, and managed by your Operating System. Every app you open/run on your computer is almost always a process, such as when you open `Chrome`, `Calculator`, `CMD`, etc; every bash command you run on linux, is its own process such as `ls`, `grep`, `vim`, etc.
+Multi-processing and its scheduling is taken care, and managed by your Operating System. Most of the time, the apps you open/run on your computer is mostl likely a process, such as when you open `Chrome`, `Calculator`, `CMD`, etc; most bash command you run on linux, is its own process such as `ls`, `grep`, `vim`, etc.
+
+<small><i>Technically, each process can have multiple child processes under it. Some bash commands like `cd`, `alias`, etc are implemented inside bash, and aren't run as separate processes.</i></small>
 
 Each process is a program that is in execution, along with the resources and OS-managed info that is associated with that execution. Each process can have one or more threads inside it. These threads are the actual units of execution<sup>[[4]](#4)</sup>.
 
@@ -75,7 +79,7 @@ These processes typically contain things like<sup>[[5]](#5)</sup>:
 More information about multi-processing:
 - Processes can easily run on multiple cores parallely, as their address spaces, and managed resources are separate from each other.
 - They are usually heavy (i.e require more resources like time/storage) to create, as each process contain a lot of info other than the execution states itself.
-- Processes can't directly communicate with each other easily, you need a separate external managed resource, like a channel/socket/etc to communicate between these processes. 
+- Processes have separate address spaces, and hence they can't directly communicate with each other directly. They need an IPC (Inter process communication, usually a separate external managed resource) mechanism, like a pipes, queues, sockets, or shared memory to communicate. 
 
 ```nomnoml
 #gutter: 1
@@ -211,9 +215,8 @@ The `grand_total` in each process looks like this after the job is complete:
 | grand_total | 10 Mil | 10 Mil | ... | 0 |
 
 
-To fix this, we can use a communication channel, such as the one provided by Python's multiprocessing libraries. This channel is usually implemented as a different server/process which helps communicate using sockets or channels. Other runtimes also allow you to explicitly ask the Operating system to grant you shared memory.
-
-Sockets/Channels are dedicated resources, which act like gateways, provided by your OS. They are used to send/recieve messages sent/recieved from processes. Every request to a website you make, starts off at a socket port thats connected to the browser's process.
+To fix this, we can use a communication channel, such as the one provided by Python's multiprocessing libraries.
+IPC (Inter-process communication) mechanisms are provided by your runtime and OS, to help communicate between various processes. They are used to send/recieve messages from processes. 
 
 <details markdown="1">
 <summary>Show code</summary>
@@ -261,12 +264,14 @@ if __name__ == "__main__":
 </details>
 The above code uses the `Value` channel to help communicate a certain value (here, `grand_total`) between the different processes.
 
+<small><i>Technically, `Value` is implemented as a shared memory object under the hood, which supports synchronization methods. Its implemented directly in C.</i></small>
+
 Result:
 ```
 time taken: 0.7432212829589844
 addition: 100000000
 ```
-We see, the result shows the correct answer of 100 Million (10 Million additions per proc * 10 Processes).
+We see, the result shows the correct answer of 100 Million (1 Million additions per proc * 100 Processes).
 
 Multi-processing shines bright, when we detatch it from a single core. We can force schedule multiple processes to run on different cores, so they are run in parallel (instead of running them concurrently). This increases the performance immensely.
 We can observe, how performant a Multi-Core CPU is to a Single-Core CPU.
@@ -362,7 +367,6 @@ We can "run" more tasks parallely under the same process, by adding more threads
 Each thread can access each other's memory, as they are executing in the same process, this makes communication between threads faster and easier.
 
 More information about multi-threading<sup>[[6]](#6)</sup>:
-- OS Threads cannot easily run on multiple cores parallely, as their address spaces, and managed resources are linked to their common parent process's resources.
 - They are lighter than processes to create, as each thread only contain info of its own execution states.
 - Threads can directly communicate with each other easily as its memory space is shared. 
 
@@ -458,7 +462,7 @@ print(f"addition: {grand_total}")
 The above code spins up 100 threads, each of which tries to update the global variable `grand_total`.
 
 Before I show the result, I need to explain a little bit about Python's GIL. GIL is a python specific concept, called Global Interpreter Lock. 
-It was used to keep python programs (and multiple C libraries that python programs depend on) safe from Multi-threaded access of resources (i.e Race conditions, which we will read about later), hence CPU bound task threads, never actually ran in parallel. It is currently being removed in the new versions of python (Python 3.14t+)<sup>[[7]](#7)</sup>, this allows the user to add locks only when required.
+It was used to keep python's internal runtine/VM safe from Multi-threaded access of resources (i.e Race conditions, which we will read about later), hence CPU bound task threads, never actually ran in parallel. It is currently being removed by default in the new free-threaded versions of python (Python 3.13t+)<sup>[[7]](#7)</sup>.
 You can read more about it here<sup>[[8]](#8)</sup>.
 
 I ran this above code 3 times without changing the code on both GIL enabled and GIL disabled versions of python, and these are the results:
@@ -506,10 +510,10 @@ addition: 100000000
 ```
 
 Why does GIL Disabled versions show different/non-deterministic results?
-This is due to <span class="tag-highlight highlight-green">Race Conditions</span>, which occurs when 2 or more parallely running tasks access/modify the same data at the same time.
+This is due to <span class="tag-highlight highlight-green">Race Conditions</span>, which occurs when 2 or more running tasks access/modify the same data without synchronizing when to read/update.
 The non-deterministic results are due to how/when the thread scheduler schedules the threads.
 
-A simple code `a += b` is actually represented as 4 separate instructions in your CPU, respectively:
+A simple code `a += b` can be represented as multiple separate instructions, here I have picked out 4 main events under the `+=` code which happen in order:
 1. `GET a`
 2. `GET b`
 3. `ADD a b => c`
@@ -588,29 +592,35 @@ In the diagram above, let these be the order of events:
 
 Therefore, the output was corrupted by multiple reads-write to the same data/memory. This is called a race condition. Which is why our `addition` in the result generated by the GIL disabled runs was non-deterministic.
 
-Enabling the GIL, allows python to schedule the threads to run one python instruction at a time, and hence we see the `addition` result remains deterministic, and correct. It essentially treats `a += b` as one instruction.
+Then why does the GIL enabled versions return the correct value? Should we trust GIL to make the `+=` work as intended without any race conditions (i.e is the `+=` instruction <span class="tag-highlight highlight-pink">atomic</span> under GIL)? Not really. Back in older versions of python, especially any version before python 3.10, shows the same race condition even while GIL is enabled.
+
+Result:
+```
+3.9.25 (main, Oct 31 2025, 23:00:23) 
+[Clang 21.1.4 ]
+time taken: 22.333576440811157
+addition: 11871122? False
+```
+
+In those old versions, the GIL would allow python to context switch at any point in time, while executing the instructions. However, python 3.10 introduced a small optimization in the GIL<sup>[[9]](#9)</sup>, which stopped it from switching the context/executing thread whenever. The end of a loop, is now a potential point when a thread can switch, and hence the `+=` operation MIGHT look like its atomic.
 
 However, the GIL must not be trusted completely.
-If we manually break down the `a += b` instruction, into 2 lines, and force the python thread scheduler to shift jobs every 1000 iterations, we see this:
+The added optimizations can easily be removed, or changed in later versions. Hence such operations are never guaranteed to be atomic.
+We can easily prove that GIL isn't to be trusted; The current optimizations also allow the point of when a function returns to be a potential point where threads can switch. Therefore, we can rewrite the above code by adding a small function that just returns 1, which gets added to the `grand_total` variable. 
 
 <details markdown="1">
 <summary>Show code</summary>
 Code:
 
 ```py
+def one():
+    return 1
+
 def add_one():
     global grand_total
 
     for i, num in enumerate(range(1_000_000)):
-        tmp = grand_total
-
-        if i % 1000 == 0: threading.Event().wait(0)
-        # this forces the scheduler to 
-        # shift to another thread if possible
-
-        grand_total = tmp + 1
-        # this is splitting a += 1 to
-        # tmp = a; a = tmp + 1
+        grand_total += one()
 ```
 
 </details>
@@ -620,28 +630,30 @@ Running the above code with GIL Enabled, 3 times gives:
 GIL Enabled Result 4:
 ```
 GIL enabled? True
-time taken: 23.805342197418213
-addition: 63116302
+time taken: 29.698392391204834
+addition: 8340328
 ```
 
 GIL Enabled Result 5:
 ```
 GIL enabled? True
-time taken: 23.988690614700317
-addition: 68880888
+time taken: 27.876639127731323
+addition: 7455026
 ```
 
 GIL Enabled Result 6:
 ```
 GIL enabled? True
-time taken: 23.739037036895752
-addition: 78528596
+time taken: 25.26656699180603
+addition: 8580310
 ```
+
+You can read more about this here<sup>[[10]](#10)</sup>.
 
 Hence, even with GIL enabled, complex operations MIGHT allow race conditions to occur.
 
-To prevent race conditions, we should use synchronization methods, such as locks/mutexes/etc, to synchronize the read and write instructions<sup>[[9]](#9)</sup>. 
-Locks like mutexes, monitors allow a thread to enter a "Zone", where ONLY 1 thread can do a certain operation.
+To prevent race conditions, we should always use synchronization methods, such as locks/mutexes/etc, to synchronize the read and write instructions<sup>[[11]](#11)</sup>. 
+Locks like mutexes, monitors, etc allow a thread to enter a "Zone", where ONLY 1 thread can do a certain operation.
 
 For example, Imagine 3 threads, where 2 of them want to write into a single variable at the same time.
 ```nomnoml
@@ -835,12 +847,14 @@ There are 2 kinds of multi-threading we see:
 
 OS Threads are threads implemented by the Operating system. Programming languages like Python, C, etc creates new OS threads when using multi-threading. OS Threads are usually heavier as compared to Virtual Threads, and contains a lot of information.
 
-Green/Virtual Threads are threads implemented and managed by your programming language runtime. Programming languages like Java, Golang (Goroutines), Erlang, etc implements their own virtual threads. Virtual threads are usually lighter and better optimized as compared to OS threads. Always go for virtual threads if your language supports it.
+Green/Virtual Threads are threads implemented and managed by your programming language runtime. Programming languages like Java, Golang (Goroutines), Erlang, etc implements their own virtual threads. Virtual threads are usually lighter and better optimized as compared to OS threads. 
+
+<small><i>These different virtual thread mechanisms are not exactly interchangeable. They are all independently implemented in their own runtimes, and hence behave different to each other. However, they are still mostly designed to be lighter than OS threads.</i></small>
 
 ##### Asynchronous Programming
 - Task size: Granular 
 
-Asynchronous programming, is the act of performing other tasks while one task is waiting (i.e Programming language implemented concurrency).
+Asynchronous programming is the act of performing other tasks while one task is waiting (i.e Programming language implemented concurrency).
 
 ```nomnoml
 #direction: right
@@ -849,11 +863,11 @@ task 1] -> [<end>]
 [<a id=1>] -> [<state> Wait for task 1's slow part; to complete] -> [<a id=2>]
 ```
 
-This type of concurrency is especially good for tasks that require I/O, as I/O takes a lot of time. It is also lighter than threads and processes, and are hence preffered for some granular parallelism tasks.
+This type of concurrency is especially good for tasks that require I/O, as I/O takes a lot of time. It is also lighter than threads and processes, and are hence preffered for some granular 'parallelism' tasks.
 
 Asynchronousity is usually achieved by an event loop which performs tasks one after another sequentially, but if there's a task which is waiting, it skips it, and goes to the next task which needs to execute. After all the tasks have executed, it returns back into the task pool, and starts excuting the remaining tasks.
 
-As Asynchronous tasks run sequentially, they are not good at parallelising CPU bound tasks (i.e tasks where CPU run time exceeds I/O run time, for example adding a million integers)
+As Asynchronous tasks run sequentially, they are not good at 'parallelising' CPU bound tasks (i.e tasks where CPU run time exceeds I/O run time, for example adding a million integers).
 
 Here's an example of asynchronousity in python:
 <details markdown="1">
@@ -928,7 +942,7 @@ We see, the time taken has increased by ~4x the original amount.
 
 We'll mostly focus on NVIDIA GPUs in this blog.
 
-GPUs implement their own threads, which do not need OS processes. These threads follow SIMT architecture<sup>[[10]](#10)</sup>, which allow them to run multiple threads on multiple cores in parallel.
+GPUs implement their own threads, which do not need OS processes. These threads follow SIMT architecture<sup>[[12]](#12)</sup>, which allow them to run multiple threads on multiple cores in parallel.
 Its very efficient in running finely grained tasks. 
 
 Heres a simple example of matrix multiplication implemented in CUDA, which I ran on my NVIDIA GTX 1650 Ti machine.
@@ -1040,9 +1054,9 @@ CPU Elapsed time: 0 milliseconds # i.e lesser than a millisecond
 Same? True
 ```
 
-As we can see, the CUDA implimentation took more time than the CPU implementation. However, the speedup of GPU programming can be noticed when we run MULTIPLE of such functions, with less data transfers between the CPU and GPU, and even more data.
+As we can see, the CUDA implimentation took more time than the CPU implementation, this is because of multiple overheads (such as CUDA initialization, memory transfer, etc). However, the speedup of GPU programming can be noticed when we run MULTIPLE of such functions, with less data transfers between the CPU and GPU, and even more data sent per batch.
 
-I re-ran the test, but now, the input matrices were 500x500 big, and I ran th emultiplications a 1000 times. These are the results:
+I re-ran the test, but now, the input matrices were 500x500 big, and I ran the multiplications a 1000 times. These are the results:
 
 ```
 Done 1000/1000
@@ -1052,8 +1066,8 @@ CPU Elapsed time: 353561 milliseconds
 Same? True
 ```
 
-GPU essentially completed each matrix multiplication in 1 millisecond, whereas, the CPU took 350ms for the same task. We achieved around 350x speedup, by using GPUs.
-More about GPU programming here<sup>[[11]](#11)</sup>.
+GPU essentially completed each matrix multiplication in 1 millisecond, whereas, the CPU took 350ms for the same task. We achieved around 350x speedup, by using GPUsin this particular benchmark.
+More about GPU programming here<sup>[[13]](#13)</sup>.
 
 ---
 
@@ -1146,7 +1160,7 @@ I stitched the frames outputed by the code, (trimmed and compressed, so it can l
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/parallelism1/mandelbrotset.webp" class="img-fluid rounded z-depth-1" width="50%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/parallelism1/mandelbrotset.webp" class="img-fluid rounded z-depth-1" width="50%" zoomable=true %}
     </div>
 </div>
 
@@ -1249,7 +1263,7 @@ When I run the above code, it starts the GUI thread. Clicking on the "Start Comp
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/parallelism1/mt_exmpl.webp" class="img-fluid rounded z-depth-1" width="50%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/parallelism1/mt_exmpl.webp" class="img-fluid rounded z-depth-1" width="50%" zoomable=true %}
     </div>
 </div>
 
@@ -1381,28 +1395,285 @@ INFO:     127.0.0.1:60056 - "GET /io HTTP/1.1" 200 OK
 
 The server shows that its executing on only 1 Thread the entire time. However, the server starts the compute request AFTER starting the IO task. The server is still able to complete the compute request, without waiting for the IO to complete (as the server is running on a single thread). It does the computation, while the IO task waits.
 
+However, IF the compute task is itself really huge, and takes a lot of time, then that would just block other connections from accessing their API endpoints (as async coroutines run sequentially, essentially serving one person at a time in this scenario).
+
+To observe this, we can add a new API endpoint, and modify the Test code.
+
+<details markdown="1">
+<summary>Show code</summary>
+API endpoint:
+
+```py
+@app.get("/compute-heavy")
+async def compute_heavy():
+    print(f"Compute started | Threads: {thread_count()}")
+
+    result = sum(i * i for i in range(100_000_000)) # should take 6 secs
+
+    print(f"Compute finished | Threads: {thread_count()}")
+    return {"result": result}
+```
+
+Test code:
+
+```py
+import requests
+from threading import Thread
+import time
+
+def call_compute(id):
+    print(f"Compute {id} Started", flush=True)
+
+    start = time.time()
+    res = requests.get("http://127.0.0.1:8000/compute-heavy")
+    end = time.time()
+
+    print(f"Compute {id} Response: {res.text}", flush=True)
+    print(f"Compute {id} Time taken: {end-start:.3f}s", flush=True)
+
+cpu_thread1 = Thread(target=call_compute, args=(1,))
+cpu_thread2 = Thread(target=call_compute, args=(2,))
+
+cpu_thread1.start()
+cpu_thread2.start()
+
+cpu_thread1.join()
+cpu_thread2.join()
+```
+
+</details>
+
+This is what the execution of the test shows:
+
+Test Result:
+```
+Compute 1 Started
+Compute 2 Started
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 7.637s
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 14.903s
+```
+
+This is what the server console shows:
+```
+INFO:     Started server process [91457]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Compute started | Threads: 1
+Compute finished | Threads: 1
+INFO:     127.0.0.1:47804 - "GET /compute-heavy HTTP/1.1" 200 OK
+Compute started | Threads: 1
+Compute finished | Threads: 1
+INFO:     127.0.0.1:47806 - "GET /compute-heavy HTTP/1.1" 200 OK
+```
+
+Essentially, User 1 in this scenario got result within 7s of calling the endpoint, and User 2 got response 14s after calling the endpoint. This demonstrates how async code is bad for CPU bound task (where CPU bound tasks essentially act like sequentially running tasks).
+
+FastAPI allows us to replace async functions with normal functions, this makes it so FastAPI schedule each non-async function on a different thread if needed. We can demonstract the same code from before, but convert the compute-heavy endpoint into a non-async function.
+
+<details markdown="1">
+<summary>Show code</summary>
+API endpoint:
+
+```py
+@app.get("/compute-heavy")
+def compute_heavy():
+    print(f"Compute started | Threads: {thread_count()}")
+
+    result = sum(i * i for i in range(100_000_000)) # should take 6 secs
+
+    print(f"Compute finished | Threads: {thread_count()}")
+    return {"result": result}
+```
+
+</details>
+
+This is what the execution of the test shows:
+
+Test Result (with GIL enabled, server is allowed to run on multiple cores):
+```
+Compute 1 Started
+Compute 2 Started
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 32.175s
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 32.542s
+```
+
+Test Result (with GIL enabled, but server is also forced to run on a single core):
+```
+Compute 1 Started
+Compute 2 Started
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 14.818s
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 14.927s
+```
+
+Test Result (with GIL disabled, single-core):
+```
+Compute 1 Started
+Compute 2 Started
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 15.382s
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 15.622s
+```
+
+Test Result (with GIL disabled, multi-core):
+```
+Compute 1 Started
+Compute 2 Started
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 6.098s
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 6.258s
+```
+
+This is what the server console shows:
+```
+INFO:     Started server process [92857]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Compute started | Threads: 3
+Compute started | Threads: 3
+Compute finished | Threads: 3
+INFO:     127.0.0.1:45750 - "GET /compute-heavy HTTP/1.1" 200 OK
+Compute finished | Threads: 3
+INFO:     127.0.0.1:45748 - "GET /compute-heavy HTTP/1.1" 200 OK
+```
+
+The server now shows us that, it creates/uses 3 Threads, instead of just 1 Thread. 
+
+<small><i>I assume, 1 Thread for the main server process of listening to new connections, 1 Thread for compute1, 1 Thread for compute2.</i></small>
+
+The above test results explain the entire story very easily. GIL essentially makes python act concurrently for CPU bound tasks.
+
+- Running the python server when GIL is enabled, and on multi-core, the GIL has to juggle between multiple cores, caches, contexts trying to execute the threads, and hence takes a lot of time to execute both the threads. However, both threads do run "parallely", and hence return together.
+- Running the python server with GIL enabled, and on single-core, makes it so the GIL can just execute the program on one core, and it doesn't have to deal with multiple cores. Therefore, both threads still execute together parallely under the OS, and hence return at the same time, but as GIL runs CPU bound tasks concurrently, both tasks take 14s together, even if a single task should take 7s.
+- Running the python server with gil disabled, and on single-core, gives similar results to when GIL is enabled but forced to run on a single core. Both tasks return together, but take 15s in total, as the CPU scheduler is essentially running the tasks concurrently.
+- Running the python server with gil disabled, and on multi-cores, gives true parallelism, and hence the tasks both return after 6s, which is what each task takes on average. This proves that the threads are actually being run on multiple cores parallely.
+
+Fastapi (Uvicorn), allows us to run servers on multiple processes. As python GIL is only for multi-threading, and not multi-processing, we can achieve GIL-free parallelism by just running the server on multiple processes, even if GIL exists.
+
+<details markdown="1">
+<summary>Show code</summary>
+server.py:
+
+```py
+from fastapi import FastAPI
+import threading
+import os
+
+app = FastAPI()
+
+def thread_count():
+    return threading.active_count()
+
+def whoami():
+    return os.getpid()
+
+@app.get("/compute-heavy")
+def compute_heavy():
+    print(f"Compute started | Threads: {thread_count()} | PID: {whoami()}")
+
+    result = sum(i * i for i in range(100_000_000)) # should take 7 secs
+
+    print(f"Compute finished | Threads: {thread_count()} | PID: {whoami()}")
+    return {"result": result}
+```
+
+To start `server.py`, we run:
+`PYTHON_GIL=1 uvicorn server:app --host 127.0.0.1 --port 8000 --workers 3`
+
+`PYTHON_GIL=1` is an environment variable in linux, which makes python enable GIL if GIL is disabled by default in python 3.14t version.
+
+`--workers 3` starts 2 child process.
+
+</details>
+
+Test Result (with GIL enabled, multi-core):
+```
+Compute 1 Started
+Compute 2 Started
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 6.428s
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 6.671s
+```
+
+This is what the server console shows:
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started parent process [95675]
+INFO:     Started server process [95678]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Started server process [95677]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Compute started | Threads: 3 | PID: 95677
+Compute started | Threads: 3 | PID: 95678
+Compute finished | Threads: 3 | PID: 95678
+INFO:     127.0.0.1:48230 - "GET /compute-heavy HTTP/1.1" 200 OK
+Compute finished | Threads: 3 | PID: 95677
+INFO:     127.0.0.1:48216 - "GET /compute-heavy HTTP/1.1" 200 OK
+```
+
+Therefore, we can see the application show true parallelism, by executing the 6s task on multiple cores/processes at the same time. We also see the server show that each compute task was scheduled on different processes, which internally is being scheduled on different CPU cores in my scenario.
+
+Forcing the server to run multiple procs on a single core, takes 14s again:
+```
+Compute 1 Started
+Compute 2 Started
+Compute 2 Response: {"result":333333328333333350000000}
+Compute 2 Time taken: 14.822s
+Compute 1 Response: {"result":333333328333333350000000}
+Compute 1 Time taken: 14.822s
+```
+As each proc is run concurrently on a single CPU, instead of parallely.
+
+Before I end this post, I'll come clean about the task size classification. You should not chose the parallel model just by your task size. You should chose the right model based on the type of parallel job.
+
+| Task          | Best Model | Worst Model* |
+| ------------- | ---------- | ------------|
+| CPU Bound          | Proc/Thread | Async |
+| I/O Bound          | Async | Proc/Thread |
+| High Comm. Freq. | Async/Thread | Proc |
+
+Sometimes, the choice is not as black-and-white, as the above table might suggest. Sometimes your hardware architecture, scheduling overhead, etc information can affect your decision about the parallel model you chose for your job.
+
+<small><i>*Worst Model = Might not work well, might waste resources, and is just generally worse</i></small>
+
 ---
 
 ### References
 <a id="1"></a>
-1. <a href="https://userpages.cs.umbc.edu/jtang/archives/cs421.f19/lectures/L07Parallelism.pdf">https://userpages.cs.umbc.edu/jtang/archives/cs421.f19/lectures/L07Parallelism.pdf</a>
+1. [https://userpages.cs.umbc.edu/jtang/...](https://userpages.cs.umbc.edu/jtang/archives/cs421.f19/lectures/L07Parallelism.pdf)
 <a id="2"></a>
-2. <a href="https://www.geeksforgeeks.org/operating-systems/difference-between-concurrency-and-parallelism/">https://www.geeksforgeeks.org/operating-systems/difference-between-concurrency-and-parallelism/</a>
+2. [https://www.geeksforgeeks.org/operating-systems/difference-between-concurrency-and-parallelism/](https://www.geeksforgeeks.org/operating-systems/difference-between-concurrency-and-parallelism/)
 <a id="3"></a>
-3. <a href="https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-in-operating-systems/">https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-in-operating-systems/</a>
+3. [https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-in-operating-systems/](https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-in-operating-systems/)
 <a id="4"></a>
-4. <a href="https://www.geeksforgeeks.org/operating-systems/difference-between-process-and-thread/">https://www.geeksforgeeks.org/operating-systems/difference-between-process-and-thread/</a>
+4. [https://www.geeksforgeeks.org/operating-systems/difference-between-process-and-thread/](https://www.geeksforgeeks.org/operating-systems/difference-between-process-and-thread/)
 <a id="5"></a>
-5. <a href="https://www.geeksforgeeks.org/operating-systems/process-in-operating-system/">https://www.geeksforgeeks.org/operating-systems/process-in-operating-system/</a>
+5. [https://www.geeksforgeeks.org/operating-systems/process-in-operating-system/](https://www.geeksforgeeks.org/operating-systems/process-in-operating-system/)
 <a id="6"></a>
-6. <a href="https://www.geeksforgeeks.org/operating-systems/thread-in-operating-system/">https://www.geeksforgeeks.org/operating-systems/thread-in-operating-system/</a>
+6. [https://www.geeksforgeeks.org/operating-systems/thread-in-operating-system/](https://www.geeksforgeeks.org/operating-systems/thread-in-operating-system/)
 <a id="7"></a>
-7. <a href="https://docs.python.org/3/howto/free-threading-python.html">https://docs.python.org/3/howto/free-threading-python.html</a>
+7. [https://docs.python.org/3/howto/free-threading-python.html](https://docs.python.org/3/howto/free-threading-python.html)
 <a id="8"></a>
-8. <a href="https://www.geeksforgeeks.org/python/what-is-the-python-global-interpreter-lock-gil/">https://www.geeksforgeeks.org/python/what-is-the-python-global-interpreter-lock-gil/</a>
+8. [https://www.geeksforgeeks.org/python/what-is-the-python-global-interpreter-lock-gil/](https://www.geeksforgeeks.org/python/what-is-the-python-global-interpreter-lock-gil/)
 <a id="9"></a>
-9. <a href="https://en.wikipedia.org/wiki/Synchronization_(computer_science)">https://en.wikipedia.org/wiki/Synchronization_(computer_science)</a>
+9. [https://github.com/python/cpython/commit/...](https://github.com/python/cpython/commit/4958f5d69dd2bf86866c43491caf72f774ddec97)
 <a id="10"></a>
-10. <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads">https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads</a>
+10. [https://www.reddit.com/r/...](https://www.reddit.com/r/learnprogramming/comments/16mlz4h/comment/k198umz/)
 <a id="11"></a>
-11. <a href="https://docs.nvidia.com/cuda/cuda-programming-guide/index.html">https://docs.nvidia.com/cuda/cuda-programming-guide/index.html</a>
+11. [https://en.wikipedia.org/wiki/Synchronization...](https://en.wikipedia.org/wiki/Synchronization_(computer_science))
+<a id="12"></a>
+12. [https://en.wikipedia.org/wiki/Single_instruction...](https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads)
+<a id="13"></a>
+13. [https://docs.nvidia.com/cuda/cuda-programming-guide/index.html](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html)

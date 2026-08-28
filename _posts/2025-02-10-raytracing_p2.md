@@ -42,7 +42,7 @@ P3
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexa1.webp" class="img-fluid rounded z-depth-1" width="20%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/ppmexa1.webp" class="img-fluid rounded z-depth-1" width="20%" %}
     </div>
 </div>
 
@@ -66,7 +66,7 @@ For example, the previous .ppm when converted to a .png file looks like this usi
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexa2.webp" class="img-fluid rounded z-depth-1" width="20%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/ppmexa2.webp" class="img-fluid rounded z-depth-1" width="20%" %}
     </div>
 </div>
 
@@ -103,7 +103,7 @@ Which then gets converted to a .png using ffmpeg, to this:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ppmexample1.webp" class="img-fluid rounded z-depth-1" width="20%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/ppmexample1.webp" class="img-fluid rounded z-depth-1" width="20%" %}
     </div>
 </div>
 
@@ -171,7 +171,7 @@ We are following a shading model called “The Phong model”, in which there ar
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" url="https://upload.wikimedia.org/wikipedia/commons/6/6b/Phong_components_version_4.png" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  url="https://upload.wikimedia.org/wikipedia/commons/6/6b/Phong_components_version_4.png" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -197,7 +197,7 @@ Before we break down diffuse shading, let’s actually try and get the vector co
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line5.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line5.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -207,7 +207,7 @@ Although, keep in mind, when doing this using actual math, there are 2 intersect
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line6.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line6.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -230,7 +230,7 @@ Using these, we can find the distance of $AP$. This however doesn’t give us an
         Normalising the camera direction.
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line7.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line7.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -238,7 +238,7 @@ Using these, we can find the distance of $AP$. This however doesn’t give us an
         Multiplying the directional vector by $AP$.
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line8.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line8.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -248,7 +248,7 @@ To find $\text{Camera} \to A$ vector, all we have to do is, find the $\text{Came
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line9.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line9.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -264,7 +264,7 @@ If we had added $AP$ to $C’P$, we would have gotten the point which exists on 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line10.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line10.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -293,7 +293,7 @@ Let’s also draw a vector from the intersection point to a light source (Try it
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/light1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/light1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -421,7 +421,7 @@ Trying to render this, we end up with something like this.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/sphere2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/sphere2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -430,7 +430,7 @@ We can move around the light’s 3D position, and see how it changes the final r
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/sphere3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/sphere3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -461,7 +461,7 @@ Vector view_vec = (Vector)ray.origin - res.intersection_point;
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -471,7 +471,7 @@ The $\theta$ is just 0 here, hence taking a dot product of those 2 vectors (norm
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -487,7 +487,7 @@ Let’s render, and see our results:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -495,7 +495,7 @@ I notice a couple of problems here. We somehow lose our dark borders at the edge
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular4.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular4.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -505,7 +505,7 @@ We have definitely lost the “matte” -ish look, but we have also lost the dar
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular5.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular5.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -518,7 +518,7 @@ This is how your normal $y=x$ graph looks like. This is what happens if we take 
         $y = x$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/power1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/power1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -526,7 +526,7 @@ This is how your normal $y=x$ graph looks like. This is what happens if we take 
         $y = x^2$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/power2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/power2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -534,7 +534,7 @@ This is how your normal $y=x$ graph looks like. This is what happens if we take 
         $y = x^3$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/power3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/power3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -542,7 +542,7 @@ This is how your normal $y=x$ graph looks like. This is what happens if we take 
         $y = x^4$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/power4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/power4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -555,7 +555,7 @@ We want to tighten the specular “reflection” to a smaller point as the dista
         From this,
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular_demo1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular_demo1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -563,7 +563,7 @@ We want to tighten the specular “reflection” to a smaller point as the dista
         To this,
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular_demo2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular_demo2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -574,7 +574,7 @@ We’ll apply similar powers to a $\cos(\theta)$ function, and let's see what re
         $y = \cos^1{x}$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/cos_power1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/cos_power1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -582,7 +582,7 @@ We’ll apply similar powers to a $\cos(\theta)$ function, and let's see what re
         $y = \cos^2{x}$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/cos_power2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/cos_power2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -590,7 +590,7 @@ We’ll apply similar powers to a $\cos(\theta)$ function, and let's see what re
         $y = \cos^3{x}$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/cos_power3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/cos_power3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -598,7 +598,7 @@ We’ll apply similar powers to a $\cos(\theta)$ function, and let's see what re
         $y = \cos^4{x}$
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/cos_power4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/cos_power4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -625,7 +625,7 @@ This is how it looks when we render now!
         Roughness = 16
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular_sphere1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular_sphere1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
@@ -633,7 +633,7 @@ This is how it looks when we render now!
         Roughness = 4
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/specular_sphere2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/specular_sphere2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -651,10 +651,10 @@ Here are some examples and animations to make sense of UV mapping complex shapes
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/uv1.webp" class="img-fluid rounded z-depth-1" width="60%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/uv1.webp" class="img-fluid rounded z-depth-1" width="60%" %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/uv2.webp" class="img-fluid rounded z-depth-1" width="60%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/uv2.webp" class="img-fluid rounded z-depth-1" width="60%" %}
     </div>
 </div>
 
@@ -666,7 +666,7 @@ Here’s an animation clip from the [video](https://www.youtube.com/watch?v=sLqX
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/sebastian.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/sebastian.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -685,7 +685,7 @@ For this to work, we must squash our input rectangle into a square:
         From this
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth.webp" class="img-fluid rounded z-depth-1" width="60%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth.webp" class="img-fluid rounded z-depth-1" width="60%" %}
     </div>
 </div>
 <div class="row mt-3">
@@ -693,7 +693,7 @@ For this to work, we must squash our input rectangle into a square:
         To this
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -707,7 +707,7 @@ Now we can project the given point on our sphere (Point B in the visualization) 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/horzplane.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/horzplane.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -715,7 +715,7 @@ We do the same, but now for a vertical plane instead.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vertplane.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vertplane.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -753,7 +753,7 @@ Well, let’s take a look at our projection image. This is called an equirectang
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth.webp" class="img-fluid rounded z-depth-1" width="70%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth.webp" class="img-fluid rounded z-depth-1" width="70%" %}
     </div>
 </div>
 
@@ -761,7 +761,7 @@ I want you to imagine that you are looking at a 3D spherical model of the earth 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth_proj1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth_proj1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -769,7 +769,7 @@ Looking at our 3D earth model from a top-down view (from north pole), can help u
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth_proj2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth_proj2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -797,7 +797,7 @@ Plotting this same route on an equirectangular map, gives us this weird looking 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth_proj3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth_proj3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -807,7 +807,7 @@ The mapping for this one would be a little bit hard to imagine. Here’s an imag
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/earth_proj4.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/earth_proj4.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -988,7 +988,7 @@ Using Normal maps, we can go from something that looks like this
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/final1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/final1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -996,7 +996,7 @@ To something like this (take a look at Laos, Eastern Coast of the Arabian Penins
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/final2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/final2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1004,7 +1004,7 @@ Using a normal map that looks like this:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/normal_map.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/normal_map.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1042,21 +1042,21 @@ We can then later use `res.normal` to calculate specularness/roughness, diffuse 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/sphere1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/sphere1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
         Basic Rendering
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/sphere3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/sphere3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
         Adding Shading
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/base_earth.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/base_earth.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
         Texturing the Sphere
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/final3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/final3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
         Adding a Skybox/Background Image
         <br>
         <small>Just a big sphere from the cam's origin as center</small>
@@ -1064,11 +1064,11 @@ We can then later use `res.normal` to calculate specularness/roughness, diffuse 
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/final1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/final1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
         Adding Specular Highlights
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/final2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/final2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
         Adding Normals
     </div>
 </div>
@@ -1080,7 +1080,7 @@ We can then later use `res.normal` to calculate specularness/roughness, diffuse 
         Simple Animation by stacking multiple renders/frames.
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/water_molecule.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/water_molecule.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -1091,7 +1091,7 @@ We can then later use `res.normal` to calculate specularness/roughness, diffuse 
         Transparency
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/transparent.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/transparent.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -1102,7 +1102,7 @@ We can then later use `res.normal` to calculate specularness/roughness, diffuse 
         Moon
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/moon.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/moon.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
 </div>
 
@@ -1241,7 +1241,7 @@ I’m really proud of the fact that I could figure most of the concepts using ba
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/anim.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/anim.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
 </div>
 

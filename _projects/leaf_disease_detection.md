@@ -34,26 +34,26 @@ Learnt how to work with Pytorch by writing my own CNN to detect type of leaf dis
 ### Results
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/leafdd/final_accuracy.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/leafdd/final_accuracy.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/leafdd/train_acc.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/leafdd/train_acc.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/leafdd/metrics.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
-    </div>
-</div>
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/leafdd/time2train.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/leafdd/no_params.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/leafdd/metrics.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/leafdd/confusion.webp" class="img-fluid rounded z-depth-1" width="20%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/leafdd/time2train.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0 text-center">
+        {% include figure.liquid  path="assets/img/projects/leafdd/no_params.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0 text-center">
+        {% include figure.liquid  path="assets/img/projects/leafdd/confusion.webp" class="img-fluid rounded z-depth-1" width="20%" zoomable=true %}
     </div>
 </div>
 

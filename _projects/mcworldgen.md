@@ -21,18 +21,18 @@ This project is a Custom World Generation engine built from scratch using perlin
 ### Gallery:
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/mcworldgen/pics1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/mcworldgen/pics1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/mcworldgen/pics4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/mcworldgen/pics4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/mcworldgen/pics2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/mcworldgen/pics2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/mcworldgen/pics3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/mcworldgen/pics3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 

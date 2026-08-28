@@ -64,7 +64,7 @@ The model in each client learns the exact same patterns across various clients. 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/iid_0.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/iid_0.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         Models initialised to a random location.
@@ -72,7 +72,7 @@ The model in each client learns the exact same patterns across various clients. 
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/iid_1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/iid_1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         Each client trains its model. Most models move in a similar direction as data is IID.
@@ -80,7 +80,7 @@ The model in each client learns the exact same patterns across various clients. 
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/iid_2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/iid_2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         All client models are all aggregated together. Hence a Round is complete, and the global model has advanced.
@@ -101,7 +101,7 @@ This is one of the main problems with FL architecture, Non-IID/Heterogeneous Dat
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/iid_0.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/iid_0.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         Models initialised to a random location.
@@ -115,19 +115,19 @@ This is one of the main problems with FL architecture, Non-IID/Heterogeneous Dat
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/noniid_1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/noniid_1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/noniid_2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/noniid_2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/noniid_3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/noniid_3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <br>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/fl/noniid_4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/fl/noniid_4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         All client models are all aggregated together. Hence a Round is complete, but the global model has NOT advanced since the initial state. Models haven't converged, and no progress has been achieved.
@@ -338,7 +338,7 @@ Li, Xiang and Huang, Kaixuan and Yang, Wenhao and Wang, Shusen and Zhang, Zhihua
 <a id="7"></a>
 7. Xianghua Xie, Chen Hu, Hanchi Ren, Jingjing Deng, A survey on vulnerability of federated learning: A learning algorithm perspective, Neurocomputing, Volume 573, 2024, 127225, ISSN 0925-2312, [https://doi.org/10.1016/j.neucom.2023.127225](https://doi.org/10.1016/j.neucom.2023.127225).
 <a id="8"></a>
-8. Karimireddy, Sai Praneeth and Kale, Satyen and Mohri, Mehryar and Reddi, Sashank and Stich, Sebastian and Suresh, Ananda Theertha. "Scaffold: Stochastic controlled averaging for federated learning", in International conference on machine learning 2020. [https://proceedings.mlr.press/v119/karimireddy20a.html](https://proceedings.mlr.press/v119/karimireddy20a.html)
+8. Karimireddy, Sai Praneeth and Kale, Satyen and Mohri, Mehryar and Reddi, Sashank and Stich, Sebastian and Suresh, Ananda Theertha. "Scaffold: Stochastic controlled averaging for federated learning", in International conference on machine learning 2020. [https://proceedings.mlr.press/v119/...](https://proceedings.mlr.press/v119/karimireddy20a.html)
 <a id="9"></a>
 9. Li, Tian and Sahu, Anit Kumar and Zaheer, Manzil and Sanjabi, Maziar and Talwalkar, Ameet and Smith, Virginia. "Federated optimization in heterogeneous networks", in Proceedings of Machine learning and systems, Volume 2, 2020. [https://proceedings.mlsys.org/paper/2020/file/...](https://proceedings.mlsys.org/paper/2020/file/1f5fe83998a09396ebe6477d9475ba0c-Paper.pdf)
 <a id="10"></a>

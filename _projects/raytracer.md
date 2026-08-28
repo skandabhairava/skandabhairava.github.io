@@ -32,18 +32,18 @@ I built a Raytracer from scratch in C++, utilising a custom designed multi-threa
 ### Gallery:
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/water_molecule.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/water_molecule.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/transparent.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/transparent.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/moon.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/moon.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/anim.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/anim.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 

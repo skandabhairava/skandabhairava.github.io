@@ -32,21 +32,21 @@ Python isn't meant for building fast paced programs. Its known globaly as an adh
 ### Gallery:
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/gravball/gravball_1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/gravball/gravball_1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/gravball/gravball_2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/gravball/gravball_2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/gravball/gravball_3.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/gravball/gravball_3.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/gravball/gravball_4.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/gravball/gravball_4.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/projects/gravball/gravball_5.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/projects/gravball/gravball_5.webp" class="img-fluid rounded z-depth-1" width="80%" zoomable=true %}
     </div>
 </div>
 

@@ -16,7 +16,7 @@ This log goes into my journey behind discovering the truth behind virtual 3D obj
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/blender_cube.webp" class="img-fluid rounded z-depth-1" width="40%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/blender_cube.webp" class="img-fluid rounded z-depth-1" width="40%" %}
     </div>
 </div>
 
@@ -24,7 +24,7 @@ There are many ways of rendering, one efficient and popular way is to represent 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/polygon_mesh.webp" class="img-fluid rounded z-depth-1" width="40%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/polygon_mesh.webp" class="img-fluid rounded z-depth-1" width="40%" %}
     </div>
 </div>
 
@@ -45,7 +45,7 @@ Before I move into vector math, let's recall what dimensions really are. When I 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/dimension.webp" class="img-fluid rounded z-depth-1" width="40%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/dimension.webp" class="img-fluid rounded z-depth-1" width="40%" %}
     </div>
 </div>
 
@@ -55,7 +55,7 @@ The number of dimensions are also taken in reference to the data we have recorde
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" url="https://media.geeksforgeeks.org/wp-content/uploads/20220624103423/dt3.jpg" class="img-fluid rounded z-depth-1" width="40%" %}
+        {% include figure.liquid  url="https://media.geeksforgeeks.org/wp-content/uploads/20220624103423/dt3.jpg" class="img-fluid rounded z-depth-1" width="40%" %}
     </div>
 </div>
 
@@ -91,7 +91,7 @@ This however, as confirmed previously, is a bit hard to visualize. To help us un
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising.webp" class="img-fluid rounded z-depth-1" width="40%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising.webp" class="img-fluid rounded z-depth-1" width="40%" %}
     </div>
 </div>
 
@@ -101,7 +101,7 @@ Here are a few more examples of vector diagrams and their (i, j) / (x, y) repres
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(0, 1)$
@@ -109,7 +109,7 @@ Here are a few more examples of vector diagrams and their (i, j) / (x, y) repres
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1, -0.5)$
@@ -117,7 +117,7 @@ Here are a few more examples of vector diagrams and their (i, j) / (x, y) repres
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(-0.25, -1)$
@@ -125,7 +125,7 @@ Here are a few more examples of vector diagrams and their (i, j) / (x, y) repres
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(-1, 0)$
@@ -157,7 +157,7 @@ The vector is at $0^\circ$ when it is in the configuration of $(1, 0)$, it’s a
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -171,7 +171,7 @@ The vector is at $0^\circ$ when it is in the configuration of $(1, 0)$, it’s a
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1.118, \pi - 0.4636)$
@@ -179,7 +179,7 @@ The vector is at $0^\circ$ when it is in the configuration of $(1, 0)$, it’s a
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1.03, \pi + 1.325)$
@@ -187,7 +187,7 @@ The vector is at $0^\circ$ when it is in the configuration of $(1, 0)$, it’s a
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/visualising4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/visualising4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1, \pi + 0)$
@@ -211,7 +211,7 @@ Multiplying a single number to a vector helps us scale up the vector linearly!
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/linear1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/linear1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(0.5, 0.5)$
@@ -219,7 +219,7 @@ Multiplying a single number to a vector helps us scale up the vector linearly!
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/linear2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/linear2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $2 \times (0.5, 0.5) \to (1, 1)$
@@ -381,7 +381,7 @@ One last important piece of information, there are different ways to orient the 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/handedness-mine.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/handedness-mine.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -389,7 +389,7 @@ Imagine X value increases as one goes to the right. Y value increases as one goe
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" url="https://www.oreilly.com/api/v2/epubs/urn:orm:book:9781788830409/files/assets/a465e4c5-b6ca-4006-a40e-1aa9ad2ebc5d.png" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  url="https://www.oreilly.com/api/v2/epubs/urn:orm:book:9781788830409/files/assets/a465e4c5-b6ca-4006-a40e-1aa9ad2ebc5d.png" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -454,7 +454,7 @@ Let’s take 2 example 2D vectors, $u = (1, 0)$ and $v = (0, 1)$
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1, 0)$
@@ -462,7 +462,7 @@ Let’s take 2 example 2D vectors, $u = (1, 0)$ and $v = (0, 1)$
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(0, 1)$
@@ -480,7 +480,7 @@ $$
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1, 1)$
@@ -497,7 +497,7 @@ So, if vectors don’t have a starting point, nor an ending point, we can draw t
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -512,7 +512,7 @@ The resultant vector on the same graph looks something like this:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd5.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd5.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -535,7 +535,7 @@ Vector subtraction is similar, but the only difference is, we’ll be rotating t
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(1, 0)$
@@ -543,7 +543,7 @@ Vector subtraction is similar, but the only difference is, we’ll be rotating t
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectoradd4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectoradd4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -555,7 +555,7 @@ Vector subtraction is similar, but the only difference is, we’ll be rotating t
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectorsub1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectorsub1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -569,7 +569,7 @@ Vector subtraction is similar, but the only difference is, we’ll be rotating t
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectorsub2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectorsub2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -582,7 +582,7 @@ We have already gone through multiplication of a 2D vector with a linear term (s
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/linear1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/linear1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $(0.5, 0.5)$
@@ -590,7 +590,7 @@ We have already gone through multiplication of a 2D vector with a linear term (s
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/linear2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/linear2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $2 \times (0.5, 0.5) \to (1, 1)$
@@ -601,7 +601,7 @@ Normalizing of a vector (i.e getting a unit vector in the same direction):
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectornorm1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectornorm1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         $u = (0.5, 1)$
@@ -609,7 +609,7 @@ Normalizing of a vector (i.e getting a unit vector in the same direction):
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectornorm2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectornorm2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -623,7 +623,7 @@ Normalizing of a vector (i.e getting a unit vector in the same direction):
 </div>
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/vectornorm3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/vectornorm3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -681,7 +681,7 @@ By the way, rotations in math conventions are taken in an anticlockwise directio
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ratio1.webp" class="img-fluid rounded z-depth-1" width="50%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/ratio1.webp" class="img-fluid rounded z-depth-1" width="50%" %}
     </div>
 </div>
 
@@ -689,7 +689,7 @@ Imagine a unit circle(a circle whose radius is exactly 1 unit), and a vector on 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ratio2.webp" class="img-fluid rounded z-depth-1" width="50%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/ratio2.webp" class="img-fluid rounded z-depth-1" width="50%" %}
     </div>
 </div>
 
@@ -719,7 +719,7 @@ If you would have seen the previous Image, then you might have figured out, you 
 Example:
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/ratio3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/ratio3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 d-flex align-items-center justify-content-center">
         <div>
@@ -772,7 +772,7 @@ Try to relate whatever you’ve learnt so far, and apply it to the given animati
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" url="https://upload.wikimedia.org/wikipedia/commons/3/3b/Circle_cos_sin.gif" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  url="https://upload.wikimedia.org/wikipedia/commons/3/3b/Circle_cos_sin.gif" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -790,10 +790,10 @@ The domain of $\tan^{-1}(x)$ sort of looks like this:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv1.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv2.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -805,7 +805,7 @@ We can “move” a vector in our imagination from something like this.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv3.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -813,7 +813,7 @@ To something like this:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv4.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -821,7 +821,7 @@ We can then ignore everything on the left side,
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv5.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv5.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -829,7 +829,7 @@ Even if the vector is pointed in the other way around, by doing this we can find
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv6.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv6.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -841,7 +841,7 @@ Let us dive deep into making sense of mathematical facts, using logic by definin
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv7.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv7.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -890,7 +890,7 @@ In the 4th Quadrant, the degrees will always be from $-90^\circ \to 0^\circ$, as
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/taninv8.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/taninv8.webp" class="img-fluid rounded z-depth-1" width="60%" zoomable=true %}
     </div>
 </div>
 
@@ -943,7 +943,7 @@ Finally! We are done with the basic math. There’s a bit more math, but we can 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/camera_proj.webp" class="img-fluid rounded z-depth-1" width="60%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/camera_proj.webp" class="img-fluid rounded z-depth-1" width="60%" %}
     </div>
 </div>
 
@@ -999,7 +999,7 @@ This works fine, until you realize the objects in the render don’t scale when 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/cameraproj2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/cameraproj2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1018,7 +1018,7 @@ Here is an illustration of what that might look like.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/cameraproj3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/cameraproj3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1087,7 +1087,7 @@ What if I create an object which contains a “starting point” (which can be r
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/mathtxtbook.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/mathtxtbook.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1115,7 +1115,7 @@ $r = a + \lambda b$, the general point on a line formula, looks something like t
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1136,7 +1136,7 @@ We can define 3 Cases of what happens when a ray intersects a 3D sphere. Here, I
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/3cases.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/3cases.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1155,7 +1155,7 @@ We can imagine the intersection to work something like this on a 2D plane:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line2.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1199,7 +1199,7 @@ There are 2 Cases: (The drawing is in 2D, but imagine it in 3D instead)
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line3.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1207,7 +1207,7 @@ There are 2 Cases: (The drawing is in 2D, but imagine it in 3D instead)
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/line4.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/line4.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
@@ -1255,7 +1255,7 @@ By the end, we end up with something that looks like this.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/raytracing/sphere1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
+        {% include figure.liquid  path="assets/img/blog/raytracing/sphere1.webp" class="img-fluid rounded z-depth-1" width="80%" %}
     </div>
 </div>
 
